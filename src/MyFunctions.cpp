@@ -106,3 +106,61 @@ std::vector<StudijskiProgram> readSPFile(){
 	return kolekcijaStudijskihPrograma;
 }
 
+std::vector<Predmet> readPredmetFile(){
+
+	std::vector<Predmet> kolekcijaPredmeta;
+	std::string line;
+
+	std::string aSifraPredmeta;
+	std::string aNazivPredmeta;
+	std::string aStudijskiP1;
+	std::string aStudijskiP2;
+	std::string aUSemestru;
+	std::string aPredavanjaSati;
+	std::string aAuditorneVjezbeS;
+	std::string aLabVjezbeS;
+	std::string aNosiEcts;
+	std::string aTrajeSemestara;
+
+	std::ifstream myfile ("datoteke/predmet.dat");
+	if (myfile.is_open())
+	{
+
+		while(getline(myfile, line)) {
+
+		  std::istringstream tokenizer(line);
+
+		  if(tokenizer) {
+			getline (tokenizer,aSifraPredmeta,'#');
+			getline (tokenizer,aNazivPredmeta,'#');
+			getline (tokenizer,aStudijskiP1,'#');
+			getline (tokenizer,aStudijskiP2,'#');
+			getline (tokenizer,aUSemestru,'#');
+			getline (tokenizer,aPredavanjaSati,'#');
+			getline (tokenizer,aAuditorneVjezbeS,'#');
+			getline (tokenizer,aLabVjezbeS,'#');
+			getline (tokenizer,aNosiEcts,'#');
+			getline (tokenizer,aTrajeSemestara, '\n');
+
+			Predmet aPredmet(
+					aSifraPredmeta,
+					aNazivPredmeta,
+					aStudijskiP1,
+					aStudijskiP2,
+					aUSemestru,
+					aPredavanjaSati,
+					aAuditorneVjezbeS,
+					aLabVjezbeS,
+					aNosiEcts,
+					aTrajeSemestara
+					);
+
+			kolekcijaPredmeta.push_back(aPredmet);
+		  }
+		}
+		myfile.close();
+	}
+	else std::cout << "Unable to open file";
+
+	return kolekcijaPredmeta;
+}

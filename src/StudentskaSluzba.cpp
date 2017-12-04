@@ -25,6 +25,12 @@ int main ()
 	ispisiListu(studijskiProgrami);
 	std::cout << std::endl;
 
+	std::cout << "Predmeti: " << std::endl << std::endl;
+	std::vector<Predmet> predmeti;
+	predmeti = readPredmetFile();
+	ispisiListu(predmeti);
+	std::cout << std::endl;
+
   //updateNastavnikFile(nastavnici);
 
   return 0;

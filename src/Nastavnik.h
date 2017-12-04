@@ -21,7 +21,6 @@ private:
 	std::string subject;
 public:
 	Nastavnik();
-	Nastavnik(std::string);
 	Nastavnik(std::string aJmbg, std::string aFirstName,
 			std::string aLastName, std::string aPosition, std::string aSubject);
 	~Nastavnik();

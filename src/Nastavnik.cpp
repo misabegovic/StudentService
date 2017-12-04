@@ -15,14 +15,6 @@ Nastavnik::Nastavnik(){
 	subject = "";
 }
 
-Nastavnik::Nastavnik(std::string empty){
-	jmbg = "";
-	firstName = "";
-	lastName = "";
-	position = "";
-	subject = "";
-}
-
 Nastavnik::Nastavnik(std::string aJmbg, std::string aFirstName,
 		std::string aLastName, std::string aPosition, std::string aSubject) {
 	jmbg = aJmbg;
