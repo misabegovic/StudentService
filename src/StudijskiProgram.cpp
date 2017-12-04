@@ -18,7 +18,7 @@ StudijskiProgram::~StudijskiProgram() {}
 
 void StudijskiProgram::ispisiPodatke(){
 
-	std::cout << "Kratica: " << getShortTitle() << '\n';
-	std::cout << "Puni naziv usmjerenja: " << getFullTitle() << "\n\n";
+	std::cout << "Kratica studijskog programa: " << getShortTitle() << '\n';
+	std::cout << "Puni naziv studijskog programa: " << getFullTitle() << "\n\n";
 
 }

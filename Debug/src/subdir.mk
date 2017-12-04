@@ -4,31 +4,37 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Ispit.cpp \
 ../src/MyFunctions.cpp \
 ../src/Nastavnik.cpp \
 ../src/Person.cpp \
 ../src/Predmet.cpp \
 ../src/Student.cpp \
 ../src/StudentskaSluzba.cpp \
-../src/StudijskiProgram.cpp 
+../src/StudijskiProgram.cpp \
+../src/Usmjerenje.cpp 
 
 OBJS += \
+./src/Ispit.o \
 ./src/MyFunctions.o \
 ./src/Nastavnik.o \
 ./src/Person.o \
 ./src/Predmet.o \
 ./src/Student.o \
 ./src/StudentskaSluzba.o \
-./src/StudijskiProgram.o 
+./src/StudijskiProgram.o \
+./src/Usmjerenje.o 
 
 CPP_DEPS += \
+./src/Ispit.d \
 ./src/MyFunctions.d \
 ./src/Nastavnik.d \
 ./src/Person.d \
 ./src/Predmet.d \
 ./src/Student.d \
 ./src/StudentskaSluzba.d \
-./src/StudijskiProgram.d 
+./src/StudijskiProgram.d \
+./src/Usmjerenje.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

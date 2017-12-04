@@ -20,6 +20,8 @@
 #include "StudijskiProgram.h"
 #include "Predmet.h"
 #include "Student.h"
+#include "Usmjerenje.h"
+#include "Ispit.h"
 
 template<class A>
 void ispisiListu(std::vector<A> aList)
@@ -35,6 +37,8 @@ std::vector<Nastavnik> readNastavnikFile();
 std::vector<StudijskiProgram> readSPFile();
 std::vector<Predmet> readPredmetFile();
 std::vector<Student> readStudentFile();
+std::vector<Usmjerenje> readUsmjerenjeFile();
+std::vector<Ispit> readIspitFile();
 
 //void updateNastavnikFile(std::map<std::string, Nastavnik>);
 

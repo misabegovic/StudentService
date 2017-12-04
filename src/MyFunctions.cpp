@@ -208,3 +208,85 @@ std::vector<Student> readStudentFile(){
 
 	return kolekcijaStudenata;
 }
+
+std::vector<Usmjerenje> readUsmjerenjeFile(){
+
+	std::vector<Usmjerenje> kolekcijaUsmjerenja;
+	std::string line;
+
+	std::string aShortName;
+	std::string aFullName;
+	std::string aSPNaziv;
+
+	std::ifstream myfile ("datoteke/usmjerenje.dat");
+	if (myfile.is_open())
+	{
+
+		while(getline(myfile, line)) {
+
+		  std::istringstream tokenizer(line);
+
+		  if(tokenizer) {
+			getline (tokenizer,aShortName,'#');
+			getline (tokenizer,aFullName,'#');
+			getline (tokenizer,aSPNaziv,'\n');
+
+			Usmjerenje aUsmjerenje(
+					aShortName,
+					aFullName,
+					aSPNaziv
+					);
+
+			kolekcijaUsmjerenja.push_back(aUsmjerenje);
+		  }
+		}
+		myfile.close();
+	}
+	else std::cout << "Unable to open file";
+
+	return kolekcijaUsmjerenja;
+}
+
+std::vector<Ispit> readIspitFile(){
+
+	std::vector<Ispit> kolekcijaIspita;
+	std::string line;
+
+	std::string aSubjectShort;
+	std::string aJmbg;
+	std::string aIndexNr;
+	std::string aDate;
+	std::string aGrade;
+
+	std::ifstream myfile ("datoteke/ispit.dat");
+	if (myfile.is_open())
+	{
+
+		while(getline(myfile, line)) {
+
+		  std::istringstream tokenizer(line);
+
+		  if(tokenizer) {
+			getline (tokenizer,aSubjectShort,'#');
+			getline (tokenizer,aJmbg,'#');
+			getline (tokenizer,aIndexNr,'#');
+			getline (tokenizer,aDate,'#');
+			getline (tokenizer,aGrade,'\n');
+
+			Ispit aIspit(
+					aSubjectShort,
+					aJmbg,
+					aIndexNr,
+					aDate,
+					aGrade
+					);
+
+			kolekcijaIspita.push_back(aIspit);
+		  }
+		}
+		myfile.close();
+	}
+	else std::cout << "Unable to open file";
+
+	return kolekcijaIspita;
+}

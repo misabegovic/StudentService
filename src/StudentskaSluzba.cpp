@@ -37,6 +37,18 @@ int main ()
 	ispisiListu(studenti);
 	std::cout << std::endl;
 
+	std::cout << "Usmjerenja: " << std::endl << std::endl;
+	std::vector<Usmjerenje> usmjerenja;
+	usmjerenja = readUsmjerenjeFile();
+	ispisiListu(usmjerenja);
+	std::cout << std::endl;
+
+	std::cout << "Ispiti: " << std::endl << std::endl;
+	std::vector<Ispit> ispiti;
+	ispiti = readIspitFile();
+	ispisiListu(ispiti);
+	std::cout << std::endl;
+
   //updateNastavnikFile(nastavnici);
 
   return 0;
