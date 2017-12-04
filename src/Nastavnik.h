@@ -8,8 +8,10 @@
 #ifndef NASTAVNIK_H_
 #define NASTAVNIK_H_
 
+#include <iostream>
 #include <string>
 #include <map>
+
 class Nastavnik {
 private:
 	std::string jmbg;
@@ -33,7 +35,7 @@ public:
 	void setLastName(std::string aLastName){ lastName = aLastName; }
 	void setPosition(std::string aPosition){ position = aPosition; }
 	void setSubject(std::string aSubject){ subject = aSubject; }
-
+	void ispisiPodatke();
 
 
 };

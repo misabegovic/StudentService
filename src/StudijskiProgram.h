@@ -8,8 +8,10 @@
 #ifndef STUDIJSKI_PROGRAM_H_
 #define STUDIJSKI_PROGRAM_H_
 
+#include <iostream>
 #include <string>
 #include <map>
+
 class StudijskiProgram {
 private:
 	std::string shortTitle;
@@ -18,12 +20,11 @@ public:
 	StudijskiProgram();
 	StudijskiProgram(std::string shortTitle, std::string fullTitle);
 	~StudijskiProgram();
-	std::string getShortTitle() {
-		return shortTitle;
-	}
-	std::string getFullTitle() {
-		return fullTitle;
-	}
+	std::string getShortTitle() { return shortTitle; }
+	std::string getFullTitle() { return fullTitle; }
+	void setShortTitle(std::string aShortTitle){ shortTitle = aShortTitle;}
+	void setFullTitle(std::string aFullTitle){ fullTitle = aFullTitle;}
+	void ispisiPodatke();
 };
 
 

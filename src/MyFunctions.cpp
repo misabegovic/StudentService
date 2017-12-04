@@ -5,69 +5,32 @@
  *      Author: muhamed
  */
 
-#include <iterator>
-#include <sstream>
-#include <iostream>
-#include <fstream>
-#include <fstream>
-#include <string>
-#include <map>
-#include <vector>
-#include "Nastavnik.h"
-#include "StudijskiProgram.h"
+#include "MyFunctions.h"
 
-void ispisiListuNastavnika(std::vector<Nastavnik> listaNastavnika){
-
-
-  std::vector<Nastavnik>::iterator it;
-
-  for(it = listaNastavnika.begin(); it != listaNastavnika.end(); ++it){
-	  std::cout << (*it).getJmbg() << std::endl;
-
-	  std::cout << "Ime i prezime: " << (*it).getFirstName() << " ";
-	  std::cout << (*it).getLastName() << '\n';
-	  std::cout << "Pozicija: " << (*it).getPosition() << '\n';
-	  std::cout << "Predmet: " << (*it).getSubject() << "\n\n";
-  }
-
-}
-
-void ispisiListuStudijskihPrograma(std::vector<StudijskiProgram> listaStudijskihPrograma){
-
-
-  std::vector<StudijskiProgram>::iterator it;
-
-  for(it = listaStudijskihPrograma.begin(); it != listaStudijskihPrograma.end(); ++it){
-	  std::cout << "Kratica: " << (*it).getShortTitle() << '\n';
-	  std::cout << "Puni naziv usmjerenja: " << (*it).getFullTitle() << "\n\n";
-  }
-
-}
-
-void updateNastavnikFile(std::map<std::string, Nastavnik> listaNastavnika)
-{
-
-  std::ofstream myfile;
-  myfile.open ("datoteke/nastavnik.dat");
-
-  std::map<std::string, Nastavnik>::iterator it;
-  it = listaNastavnika.begin();
-
-  while(it != listaNastavnika.end()){
-	  std::string key = (*it).first;
-
-	  myfile << listaNastavnika[key].getJmbg() << "#";
-	  myfile << listaNastavnika[key].getFirstName() << "#";
-	  myfile << listaNastavnika[key].getLastName() << "#";
-	  myfile << listaNastavnika[key].getPosition() << "#";
-	  myfile << listaNastavnika[key].getSubject() << '\n';
-
-	  it++;
-  }
-
-  myfile.close();
-
-}
+//void updateNastavnikFile(std::map<std::string, Nastavnik> listaNastavnika)
+//{
+//
+//  std::ofstream myfile;
+//  myfile.open ("datoteke/nastavnik.dat");
+//
+//  std::map<std::string, Nastavnik>::iterator it;
+//  it = listaNastavnika.begin();
+//
+//  while(it != listaNastavnika.end()){
+//	  std::string key = (*it).first;
+//
+//	  myfile << listaNastavnika[key].getJmbg() << "#";
+//	  myfile << listaNastavnika[key].getFirstName() << "#";
+//	  myfile << listaNastavnika[key].getLastName() << "#";
+//	  myfile << listaNastavnika[key].getPosition() << "#";
+//	  myfile << listaNastavnika[key].getSubject() << '\n';
+//
+//	  it++;
+//  }
+//
+//  myfile.close();
+//
+//}
 
 std::vector<Nastavnik> readNastavnikFile(){
 

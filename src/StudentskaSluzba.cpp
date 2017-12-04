@@ -14,21 +14,15 @@
 int main ()
 {
 	std::cout << "Nastavnici: " << std::endl << std::endl;
-
 	std::vector<Nastavnik> nastavnici;
 	nastavnici = readNastavnikFile();
-
-	ispisiListuNastavnika(nastavnici);
-
+	ispisiListu(nastavnici);
 	std::cout << std::endl;
 
 	std::cout << "Studijski Programi: " << std::endl << std::endl;
-
 	std::vector<StudijskiProgram> studijskiProgrami;
 	studijskiProgrami = readSPFile();
-
-	ispisiListuStudijskihPrograma(studijskiProgrami);
-
+	ispisiListu(studijskiProgrami);
 	std::cout << std::endl;
 
   //updateNastavnikFile(nastavnici);

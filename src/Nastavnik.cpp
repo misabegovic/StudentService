@@ -6,7 +6,6 @@
  */
 
 #include "Nastavnik.h"
-#include <string>
 
 Nastavnik::Nastavnik(){
 	jmbg = "";
@@ -36,4 +35,13 @@ Nastavnik::Nastavnik(std::string aJmbg, std::string aFirstName,
 Nastavnik::~Nastavnik() {
 }
 
+void Nastavnik::ispisiPodatke(){
+
+	  std::cout << getJmbg() << std::endl;
+	  std::cout << "Ime i prezime: " << getFirstName() << " ";
+	  std::cout << getLastName() << '\n';
+	  std::cout << "Pozicija: " << getPosition() << '\n';
+	  std::cout << "Predmet: " << getSubject() << "\n\n";
+
+}
 

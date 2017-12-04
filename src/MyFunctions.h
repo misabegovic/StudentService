@@ -10,6 +10,7 @@
 
 #include <iterator>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <fstream>
 #include <string>
@@ -18,13 +19,20 @@
 #include "Nastavnik.h"
 #include "StudijskiProgram.h"
 
-//sa vektorom
+template<class A>
+void ispisiListu(std::vector<A> aList)
+{
+  typename std::vector<A>::iterator it;
+
+  for(it = aList.begin(); it != aList.end(); ++it){
+	  (*it).ispisiPodatke();
+  }
+}
+
 std::vector<Nastavnik> readNastavnikFile();
 std::vector<StudijskiProgram> readSPFile();
-void ispisiListuNastavnika(std::vector<Nastavnik>);
-void ispisiListuStudijskihPrograma(std::vector<StudijskiProgram>);
 
-void updateNastavnikFile(std::map<std::string, Nastavnik>);
+//void updateNastavnikFile(std::map<std::string, Nastavnik>);
 
 
 #endif /* MYFUNCTIONS_H_ */
