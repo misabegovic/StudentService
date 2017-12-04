@@ -6,21 +6,27 @@
 CPP_SRCS += \
 ../src/MyFunctions.cpp \
 ../src/Nastavnik.cpp \
+../src/Person.cpp \
 ../src/Predmet.cpp \
+../src/Student.cpp \
 ../src/StudentskaSluzba.cpp \
 ../src/StudijskiProgram.cpp 
 
 OBJS += \
 ./src/MyFunctions.o \
 ./src/Nastavnik.o \
+./src/Person.o \
 ./src/Predmet.o \
+./src/Student.o \
 ./src/StudentskaSluzba.o \
 ./src/StudijskiProgram.o 
 
 CPP_DEPS += \
 ./src/MyFunctions.d \
 ./src/Nastavnik.d \
+./src/Person.d \
 ./src/Predmet.d \
+./src/Student.d \
 ./src/StudentskaSluzba.d \
 ./src/StudijskiProgram.d 
 

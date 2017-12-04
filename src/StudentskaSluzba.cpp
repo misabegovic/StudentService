@@ -31,6 +31,12 @@ int main ()
 	ispisiListu(predmeti);
 	std::cout << std::endl;
 
+	std::cout << "Studenti: " << std::endl << std::endl;
+	std::vector<Student> studenti;
+	studenti = readStudentFile();
+	ispisiListu(studenti);
+	std::cout << std::endl;
+
   //updateNastavnikFile(nastavnici);
 
   return 0;

@@ -8,18 +8,18 @@
 #include "Nastavnik.h"
 
 Nastavnik::Nastavnik(){
-	jmbg = "";
-	firstName = "";
-	lastName = "";
+	setJmbg("");
+	setFirstName("");
+	setLastName("");
 	position = "";
 	subject = "";
 }
 
 Nastavnik::Nastavnik(std::string aJmbg, std::string aFirstName,
 		std::string aLastName, std::string aPosition, std::string aSubject) {
-	jmbg = aJmbg;
-	firstName = aFirstName;
-	lastName = aLastName;
+	setJmbg(aJmbg);
+	setFirstName(aFirstName);
+	setLastName(aLastName);
 	position = aPosition;
 	subject = aSubject;
 }

@@ -164,3 +164,47 @@ std::vector<Predmet> readPredmetFile(){
 
 	return kolekcijaPredmeta;
 }
+
+std::vector<Student> readStudentFile(){
+
+	std::vector<Student> kolekcijaStudenata;
+	std::string line;
+
+	std::string aJmbg;
+	std::string aFirstName;
+	std::string aLastName;
+	std::string aBrIndexa;
+	std::string aSmijer;
+
+	std::ifstream myfile ("datoteke/student.dat");
+	if (myfile.is_open())
+	{
+
+		while(getline(myfile, line)) {
+
+		  std::istringstream tokenizer(line);
+
+		  if(tokenizer) {
+			getline (tokenizer,aJmbg,'#');
+			getline (tokenizer,aFirstName,'#');
+			getline (tokenizer,aLastName,'#');
+			getline (tokenizer,aBrIndexa,'#');
+			getline (tokenizer,aSmijer,'\n');
+
+			Student aStudent(
+					aJmbg,
+					aFirstName,
+					aLastName,
+					aBrIndexa,
+					aSmijer
+					);
+
+			kolekcijaStudenata.push_back(aStudent);
+		  }
+		}
+		myfile.close();
+	}
+	else std::cout << "Unable to open file";
+
+	return kolekcijaStudenata;
+}
