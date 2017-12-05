@@ -121,6 +121,7 @@ void promjeniPodatke(){
 		if( aTemp == "nastavnici"){
 			nastavnici = promjeniListuNastavnika(nastavnici);
 		}else if(aTemp == "studijskiProgrami"){
+			studijskiProgrami = promjeniListuStudijskihPrograma(studijskiProgrami);
 		}else if(aTemp == "predmeti"){
 		}else if(aTemp == "studenti"){
 		}else if(aTemp == "usmjerenja"){
