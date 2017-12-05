@@ -148,8 +148,6 @@ std::vector<Nastavnik> readNastavnikFile(){
 	std::string aPosition;
 	std::string aSubject;
 
-	int aIntJmbg;
-
 	std::ifstream myfile ("datoteke/nastavnik.dat");
 	if (myfile.is_open())
 	{
@@ -165,10 +163,8 @@ std::vector<Nastavnik> readNastavnikFile(){
 			getline(tokenizer,aPosition,'#');
 			getline(tokenizer,aSubject);
 
-			std::stringstream(aJmbg) >> aIntJmbg;
-
 			Nastavnik aNastavnik(
-					aIntJmbg,
+					aJmbg,
 					aFirstName,
 					aLastName,
 					aPosition,
@@ -300,8 +296,6 @@ std::vector<Student> readStudentFile(){
 	std::string aBrIndexa;
 	std::string aSmijer;
 
-	int aIntJmbg;
-
 	std::ifstream myfile ("datoteke/student.dat");
 	if (myfile.is_open())
 	{
@@ -317,10 +311,8 @@ std::vector<Student> readStudentFile(){
 			getline (tokenizer,aBrIndexa,'#');
 			getline (tokenizer,aSmijer,'\n');
 
-			std::stringstream(aJmbg) >> aIntJmbg;
-
 			Student aStudent(
-					aIntJmbg,
+					aJmbg,
 					aFirstName,
 					aLastName,
 					aBrIndexa,

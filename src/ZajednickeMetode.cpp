@@ -48,7 +48,7 @@ std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik> listaNasta
 	std::cout << "Ulazite u promjeniNastavnika \n";
 	std::cout << "Nadjite nastavnika kojeg zelite promjeniti po JMBG: \n\n";
 
-	int jmbgNastavnika;
+	std::string jmbgNastavnika;
 	std::cin >> jmbgNastavnika;
 	bool nastavnikFound = false;
 	std::vector<Nastavnik>::iterator iter;
@@ -122,7 +122,7 @@ std::vector<Student> promjeniListuStudenata(std::vector<Student> listaStudenata)
 	std::cout << "Nadjite studenta kojeg zelite promjeniti po JMBG: \n\n";
 
 	std::cout << "JMBG: ";
-	int jmbgStudenta;
+	std::string jmbgStudenta;
 	std::cin >> jmbgStudenta;
 	bool studentFound = false;
 	std::vector<Student>::iterator iter;
@@ -621,4 +621,46 @@ void promjeniIspit(Ispit &aIspit){
 	aIspit.ispisiPodatke();
 
 
+}
+
+void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika){
+	std::cout << "Ulazite u obrisiIzListeNastavnika \n";
+	std::cout << "Nadjite nastanika kojega zelite izbrisati po JMBG-u (13 znakova): \n\n";
+
+	prikazListeNastavnika(listaNastavnika);
+	std::cout << "\n\n";
+
+	std::cout << "JMBG: ";
+	std::string jmbgNastavnika;
+	std::cin.clear();
+	std::cin >> jmbgNastavnika;
+	std::cout << '\n';
+	std::vector<Nastavnik>::iterator iter;
+
+	int position;
+
+	while(jmbgNastavnika != "//"){
+		position = 0;
+		bool nastavnikFound = false;
+
+		for(iter = listaNastavnika.begin(); iter != listaNastavnika.end(); ++iter){
+			if((*iter).getJmbg() == jmbgNastavnika){
+				listaNastavnika[position] = listaNastavnika.back();
+				listaNastavnika.pop_back();
+				nastavnikFound = true;
+				break;
+			}
+			position++;
+		}
+
+		if(!nastavnikFound){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje nastavnika, unesite novi JMBG \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+		std::cin.clear();
+		std::cin >> jmbgNastavnika;
+		std::cout << '\n';
+	}
 }

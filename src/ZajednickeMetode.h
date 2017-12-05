@@ -11,6 +11,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <cctype>
 #include "Nastavnik.h"
 #include "StudijskiProgram.h"
 #include "Predmet.h"
@@ -48,5 +50,8 @@ void promjeniPredmet(Predmet &aSP);
 void promjeniStudenta(Student &aStudent);
 void promjeniUsmjerenje(Usmjerenje &aUsmjerenje);
 void promjeniIspit(Ispit &aIspit);
+
+void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika);
+
 
 #endif /* ZAJEDNICKEMETODE_H_ */

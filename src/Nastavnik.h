@@ -19,7 +19,7 @@ private:
 	std::string subject;
 public:
 	Nastavnik();
-	Nastavnik(int aJmbg, std::string aFirstName,
+	Nastavnik(std::string aJmbg, std::string aFirstName,
 			std::string aLastName, std::string aPosition, std::string aSubject);
 	~Nastavnik();
 	std::string getPosition() {	return position; }

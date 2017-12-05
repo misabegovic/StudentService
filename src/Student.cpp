@@ -9,7 +9,7 @@
 
 
 Student::Student(
-		int aJmbg,
+		std::string aJmbg,
 		std::string aFirstName,
 		std::string aLastName,
 		std::string aIndexNr,
