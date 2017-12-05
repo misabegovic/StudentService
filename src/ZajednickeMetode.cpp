@@ -635,22 +635,18 @@ void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika){
 	std::cin.clear();
 	std::cin >> jmbgNastavnika;
 	std::cout << '\n';
-	std::vector<Nastavnik>::iterator iter;
-
-	int position;
 
 	while(jmbgNastavnika != "//"){
-		position = 0;
 		bool nastavnikFound = false;
 
-		for(iter = listaNastavnika.begin(); iter != listaNastavnika.end(); ++iter){
-			if((*iter).getJmbg() == jmbgNastavnika){
-				listaNastavnika[position] = listaNastavnika.back();
+		for(int i = 0; i < listaNastavnika.size(); i++){
+			if(listaNastavnika[i].getJmbg() == jmbgNastavnika){
+				listaNastavnika[i] = listaNastavnika.back();
 				listaNastavnika.pop_back();
 				nastavnikFound = true;
+				i--;
 				break;
 			}
-			position++;
 		}
 
 		if(!nastavnikFound){
