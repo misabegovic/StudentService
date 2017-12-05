@@ -34,5 +34,7 @@ void prikazListePredmeta(std::vector<Predmet>);
 void prikazListeStudenata(std::vector<Student>);
 void prikazListeUsmjerenja(std::vector<Usmjerenje>);
 void prikazListeIspita(std::vector<Ispit>);
+std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik>);
+void promjeniNastavnika(Nastavnik &aNastavnik);
 
 #endif /* ZAJEDNICKEMETODE_H_ */
