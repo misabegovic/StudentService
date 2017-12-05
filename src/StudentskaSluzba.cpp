@@ -125,8 +125,11 @@ void promjeniPodatke(){
 		}else if(aTemp == "predmeti"){
 			predmeti = promjeniListuPredmeta(predmeti);
 		}else if(aTemp == "studenti"){
+			studenti = promjeniListuStudenata(studenti);
 		}else if(aTemp == "usmjerenja"){
+			usmjerenja = promjeniListuUsmjerenja(usmjerenja);
 		}else if(aTemp == "ispiti"){
+			ispiti = promjeniListuIspita(ispiti);
 		}else{
 			std::cout << "Niste unijeli ispravan naziv liste\n";
 		}
@@ -139,6 +142,6 @@ void promjeniPodatke(){
 		std::cin >> aTemp;
 	}
 
-	std::cout << "Izlazite iz prikaziListu \n\n";
+	std::cout << "Izlazite iz promjeniPodatke \n\n";
 
 }

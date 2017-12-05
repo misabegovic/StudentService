@@ -38,10 +38,15 @@ void prikazListeIspita(std::vector<Ispit>);
 std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik>);
 std::vector<StudijskiProgram> promjeniListuStudijskihPrograma(std::vector<StudijskiProgram>);
 std::vector<Predmet> promjeniListuPredmeta(std::vector<Predmet>);
+std::vector<Student> promjeniListuStudenata(std::vector<Student>);
+std::vector<Usmjerenje> promjeniListuUsmjerenja(std::vector<Usmjerenje>);
+std::vector<Ispit> promjeniListuIspita(std::vector<Ispit>);
 
 void promjeniNastavnika(Nastavnik &aNastavnik);
 void promjeniStudijskiProgram(StudijskiProgram &aSP);
 void promjeniPredmet(Predmet &aSP);
-
+void promjeniStudenta(Student &aStudent);
+void promjeniUsmjerenje(Usmjerenje &aUsmjerenje);
+void promjeniIspit(Ispit &aIspit);
 
 #endif /* ZAJEDNICKEMETODE_H_ */
