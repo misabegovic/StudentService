@@ -8,48 +8,80 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "Nastavnik.h"
-#include "MyFunctions.h"
+
+#include "CitanjeUpisivanjeFileova.h"
+#include "ZajednickeMetode.h"
+
+static std::vector<Nastavnik> nastavnici;
+static std::vector<StudijskiProgram> studijskiProgrami;
+static std::vector<Predmet> predmeti;
+static std::vector<Student> studenti;
+static std::vector<Usmjerenje> usmjerenja;
+static std::vector<Ispit> ispiti;
+
+void prikaziListu();
 
 int main ()
 {
-	std::cout << "Nastavnici: " << std::endl << std::endl;
-	std::vector<Nastavnik> nastavnici;
 	nastavnici = readNastavnikFile();
-	ispisiListu(nastavnici);
-	std::cout << std::endl;
-
-	std::cout << "Studijski Programi: " << std::endl << std::endl;
-	std::vector<StudijskiProgram> studijskiProgrami;
 	studijskiProgrami = readSPFile();
-	ispisiListu(studijskiProgrami);
-	std::cout << std::endl;
-
-	std::cout << "Predmeti: " << std::endl << std::endl;
-	std::vector<Predmet> predmeti;
 	predmeti = readPredmetFile();
-	ispisiListu(predmeti);
-	std::cout << std::endl;
-
-	std::cout << "Studenti: " << std::endl << std::endl;
-	std::vector<Student> studenti;
 	studenti = readStudentFile();
-	ispisiListu(studenti);
-	std::cout << std::endl;
-
-	std::cout << "Usmjerenja: " << std::endl << std::endl;
-	std::vector<Usmjerenje> usmjerenja;
 	usmjerenja = readUsmjerenjeFile();
-	ispisiListu(usmjerenja);
-	std::cout << std::endl;
-
-	std::cout << "Ispiti: " << std::endl << std::endl;
-	std::vector<Ispit> ispiti;
 	ispiti = readIspitFile();
-	ispisiListu(ispiti);
-	std::cout << std::endl;
 
-  //updateNastavnikFile(nastavnici);
+	std::string temp = "";
+
+	while(temp != "()"){
+
+		std::cout << "Dobro dosli, imate sljedece opcije: " << '\n' << '\n';
+		std::cout << "Za prikaz trenutke liste, kucate -> prikaziListu" << "\n\n";
+
+		std::cin >> temp;
+
+		if(temp == "prikaziListu"){
+			prikaziListu();
+		}
+
+	}
+
+    updateNastavnikFile(nastavnici);
 
   return 0;
+}
+
+void prikaziListu(){
+
+	std::cout << "Liste dostupne za citanje: " << '\n';
+	std::cout << "nastavnici , studijskiProgrami, predmeti, studenti, usmjerenja, ispiti" << "\n\n";
+
+	std::string aTemp;
+	std::cin >> aTemp;
+	std::string aBreak = "";
+
+	while(aBreak != "()"){
+			if( aTemp == "nastavnici"){
+				prikazListeNastavnika(nastavnici);
+				aBreak = "()";
+			}else if(aTemp == "studijskiProgrami"){
+				prikazListeStudijskihPrograma(studijskiProgrami);
+				aBreak = "()";
+			}else if(aTemp == "predmeti"){
+				prikazListePredmeta(predmeti);
+				aBreak = "()";
+			}else if(aTemp == "studenti"){
+				prikazListeStudenata(studenti);
+				aBreak = "()";
+			}else if(aTemp == "usmjerenja"){
+				prikazListeUsmjerenja(usmjerenja);
+				aBreak = "()";
+			}else if(aTemp == "ispiti"){
+				prikazListeIspita(ispiti);
+				aBreak = "()";
+			}else{
+				std::cout << "Niste unijeli ispravan naziv liste\n";
+				std::cin.clear();
+				std::cin >> aTemp;
+			}
+	}
 }
