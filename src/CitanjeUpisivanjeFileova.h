@@ -31,6 +31,10 @@ std::vector<Usmjerenje> readUsmjerenjeFile();
 std::vector<Ispit> readIspitFile();
 
 void updateNastavnikFile(std::vector<Nastavnik>);
-
+void updateSPFile(std::vector<StudijskiProgram>);
+void updatePredmetFile(std::vector<Predmet>);
+void updateStudentFile(std::vector<Student>);
+void updateUsmjerenjeFile(std::vector<Usmjerenje>);
+void updateIspitFile(std::vector<Ispit>);
 
 #endif /* CITANJEUPISIVANJEFILEOVA_H_ */

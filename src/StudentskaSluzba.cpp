@@ -30,65 +30,74 @@ int main ()
 	usmjerenja = readUsmjerenjeFile();
 	ispiti = readIspitFile();
 
+	std::cout << "Dobro dosli, imate sljedece opcije: " << '\n' << '\n';
+	std::cout << "Za prikaz trenutne liste iz baze, kucate -> prikaziListu" << "\n\n";
+	std::cout << "Za izlaz iz programa, ukucajte // \n\n";
+
 	std::string temp = "";
+	std::cin.clear();
+	std::cin >> temp;
 
 	while(temp != "//"){
 
-		std::cout << "Dobro dosli, imate sljedece opcije: " << '\n' << '\n';
+		if(temp == "prikaziListu"){
+			prikaziListu();
+		}else{
+			std::cout << "Unijeli ste nepostojecu komandu, pokusajte ponovo: " << '\n' << '\n';
+		}
+
 		std::cout << "Za prikaz trenutke liste, kucate -> prikaziListu" << "\n\n";
 		std::cout << "Za izlazi iz programa, ukucajte // \n\n";
 
+		std::cin.clear();
 		std::cin >> temp;
-		std::string valid;
-		std::string aBreak;
-
-		while(valid != "ok"){
-
-			if(temp == "//"){
-				break;
-			}else if(temp == "prikaziListu"){
-				std::cin.clear();
-				valid = "ok";
-				prikaziListu();
-			}else{
-				std::cout << "Unijeli ste nepostojecu komandu, pokusajte ponovo: " << '\n' << '\n';
-				std::cin.clear();
-				std::cin >> temp;
-			}
-		}
 	}
 
     updateNastavnikFile(nastavnici);
+    updateSPFile(studijskiProgrami);
+    updatePredmetFile(predmeti);
+    updateStudentFile(studenti);
+    updateUsmjerenjeFile(usmjerenja);
+    updateIspitFile(ispiti);
 
   return 0;
 }
 
 void prikaziListu(){
 
+	std::cout << "Ulazite u prikaziListu \n\n";
+
 	std::cout << "Liste dostupne za citanje: " << '\n';
 	std::cout << "nastavnici , studijskiProgrami, predmeti, studenti, usmjerenja, ispiti" << "\n\n";
-	std::cout << "za prekid, ukucajte // \n\n";
+	std::cout << "za izlaz iz prikaziListu, ukucajte // \n\n";
 
 	std::string aTemp;
 	std::cin >> aTemp;
 
 	while(aTemp != "//"){
-			if( aTemp == "nastavnici"){
-				prikazListeNastavnika(nastavnici);
-			}else if(aTemp == "studijskiProgrami"){
-				prikazListeStudijskihPrograma(studijskiProgrami);
-			}else if(aTemp == "predmeti"){
-				prikazListePredmeta(predmeti);
-			}else if(aTemp == "studenti"){
-				prikazListeStudenata(studenti);
-			}else if(aTemp == "usmjerenja"){
-				prikazListeUsmjerenja(usmjerenja);
-			}else if(aTemp == "ispiti"){
-				prikazListeIspita(ispiti);
-			}else{
-				std::cout << "Niste unijeli ispravan naziv liste\n";
-				std::cin.clear();
-				std::cin >> aTemp;
-			}
+		if( aTemp == "nastavnici"){
+			prikazListeNastavnika(nastavnici);
+		}else if(aTemp == "studijskiProgrami"){
+			prikazListeStudijskihPrograma(studijskiProgrami);
+		}else if(aTemp == "predmeti"){
+			prikazListePredmeta(predmeti);
+		}else if(aTemp == "studenti"){
+			prikazListeStudenata(studenti);
+		}else if(aTemp == "usmjerenja"){
+			prikazListeUsmjerenja(usmjerenja);
+		}else if(aTemp == "ispiti"){
+			prikazListeIspita(ispiti);
+		}else{
+			std::cout << "Niste unijeli ispravan naziv liste\n";
+		}
+
+		std::cout << "Liste dostupne za citanje: " << '\n';
+		std::cout << "nastavnici , studijskiProgrami, predmeti, studenti, usmjerenja, ispiti" << "\n\n";
+		std::cout << "za izlaz iz prikaziListu, ukucajte // \n\n";
+
+		std::cin.clear();
+		std::cin >> aTemp;
 	}
+
+	std::cout << "Izlazite iz prikaziListu \n\n";
 }

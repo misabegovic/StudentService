@@ -30,6 +30,114 @@ void updateNastavnikFile(std::vector<Nastavnik> listaNastavnika)
 
 }
 
+void updateSPFile(std::vector<StudijskiProgram> listaPrograma){
+
+  std::ofstream myfile;
+  myfile.open ("datoteke/studijskiProgram.dat");
+
+  std::vector<StudijskiProgram>::iterator it;
+  it = listaPrograma.begin();
+
+  while(it != listaPrograma.end()){
+	  myfile << (*it).getShortTitle() << "#";
+	  myfile << (*it).getFullTitle() << '\n';
+
+	  it++;
+  }
+
+  myfile.close();
+
+}
+
+void updatePredmetFile(std::vector<Predmet> listaPredmeta){
+	std::ofstream myfile;
+	myfile.open ("datoteke/predmet.dat");
+
+	std::vector<Predmet>::iterator it;
+	it = listaPredmeta.begin();
+
+	while(it != listaPredmeta.end()){
+	  myfile << (*it).getSifraP() << "#";
+	  myfile << (*it).getNazivP() << "#";
+	  myfile << (*it).getSP1() << "#";
+	  myfile << (*it).getSP2() << "#";
+	  myfile << (*it).getUSemestru() << "#";
+	  myfile << (*it).getPredavanjaSati() << "#";
+	  myfile << (*it).getAuditorneVSati() << "#";
+	  myfile << (*it).getLabVSati() << "#";
+	  myfile << (*it).getNosiEcts() << "#";
+	  myfile << (*it).getTrajeSemestara() << '\n';
+
+	  it++;
+	}
+
+	myfile.close();
+}
+
+void updateStudentFile(std::vector<Student> listaStudenata){
+
+	std::ofstream myfile;
+	myfile.open ("datoteke/student.dat");
+
+	std::vector<Student>::iterator it;
+	it = listaStudenata.begin();
+
+	while(it != listaStudenata.end()){
+	  myfile << (*it).getJmbg() << "#";
+	  myfile << (*it).getFirstName() << "#";
+	  myfile << (*it).getLastName() << "#";
+	  myfile << (*it).getBrIndexa() << "#";
+	  myfile << (*it).getSmjer() << '\n';
+
+	  it++;
+	}
+
+	myfile.close();
+
+}
+
+void updateUsmjerenjeFile(std::vector<Usmjerenje> listaUsmjerenja){
+
+	std::ofstream myfile;
+	myfile.open ("datoteke/usmjerenje.dat");
+
+	std::vector<Usmjerenje>::iterator it;
+	it = listaUsmjerenja.begin();
+
+	while(it != listaUsmjerenja.end()){
+	  myfile << (*it).getShortName() << "#";
+	  myfile << (*it).getFullName() << "#";
+	  myfile << (*it).getNazivSP() << '\n';
+
+	  it++;
+	}
+
+	myfile.close();
+
+}
+
+void updateIspitFile(std::vector<Ispit> listaIspita){
+
+	std::ofstream myfile;
+	myfile.open ("datoteke/ispit.dat");
+
+	std::vector<Ispit>::iterator it;
+	it = listaIspita.begin();
+
+	while(it != listaIspita.end()){
+	  myfile << (*it).getPredmetShort() << "#";
+	  myfile << (*it).getProfesorJmbg() << "#";
+	  myfile << (*it).getStudentIndexNr() << "#";
+	  myfile << (*it).getTheDate() << "#";
+	  myfile << (*it).getTheGrade() << '\n';
+
+	  it++;
+	}
+
+	myfile.close();
+
+}
+
 std::vector<Nastavnik> readNastavnikFile(){
 
 	std::vector<Nastavnik> kolekcijaNastavnika;
