@@ -625,7 +625,7 @@ void promjeniIspit(Ispit &aIspit){
 
 void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika){
 	std::cout << "Ulazite u obrisiIzListeNastavnika \n";
-	std::cout << "Nadjite nastanika kojega zelite izbrisati po JMBG-u (13 znakova): \n\n";
+	std::cout << "Nadjite nastavnika kojeg zelite izbrisati po JMBG-u (13 znakova): \n\n";
 
 	prikazListeNastavnika(listaNastavnika);
 	std::cout << "\n\n";
@@ -639,7 +639,7 @@ void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika){
 	while(jmbgNastavnika != "//"){
 		bool nastavnikFound = false;
 
-		for(int i = 0; i < listaNastavnika.size(); i++){
+		for(unsigned int i = 0; i < listaNastavnika.size(); i++){
 			if(listaNastavnika[i].getJmbg() == jmbgNastavnika){
 				listaNastavnika[i] = listaNastavnika.back();
 				listaNastavnika.pop_back();
@@ -657,6 +657,225 @@ void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika){
 		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
 		std::cin.clear();
 		std::cin >> jmbgNastavnika;
+		std::cout << '\n';
+	}
+}
+
+void obrisiIzListeStudijskihPrograma(std::vector<StudijskiProgram> &listaSP){
+	std::cout << "Ulazite u obrisiIzListeStudijskihPrograma \n";
+	std::cout << "Nadjite studijski program koji zelite izbrisati po kratici (2 znaka): \n\n";
+
+	prikazListeStudijskihPrograma(listaSP);
+	std::cout << "\n\n";
+
+	std::cout << "Kratica: ";
+	std::string kratica;
+	std::cin.clear();
+	std::cin >> kratica;
+	std::cout << '\n';
+
+	while(kratica != "//"){
+		bool found = false;
+
+		for(unsigned int i = 0; i < listaSP.size(); i++){
+			if(listaSP[i].getShortTitle() == kratica){
+				listaSP[i] = listaSP.back();
+				listaSP.pop_back();
+				found = true;
+				i--;
+				break;
+			}
+		}
+
+		if(!found){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje nastavnika, unesite novu kraticu \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+		std::cin.clear();
+		std::cin >> kratica;
+		std::cout << '\n';
+	}
+}
+
+void obrisiIzListePredmeta(std::vector<Predmet> &listaPredmeta){
+	std::cout << "Ulazite u obrisiIzListePredmeta \n";
+	std::cout << "Nadjite predmet koji zelite izbrisati po sifri predmeta (2 znaka): \n\n";
+
+	prikazListePredmeta(listaPredmeta);
+	std::cout << "\n\n";
+
+	std::cout << "Sifra: ";
+	std::string sifra;
+	std::cin.clear();
+	std::cin >> sifra;
+	std::cout << '\n';
+
+	while(sifra != "//"){
+		bool found = false;
+
+		for(unsigned int i = 0; i < listaPredmeta.size(); i++){
+			if(listaPredmeta[i].getSifraP() == sifra){
+				listaPredmeta[i] = listaPredmeta.back();
+				listaPredmeta.pop_back();
+				found = true;
+				i--;
+				break;
+			}
+		}
+
+		if(!found){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje nastavnika, unesite novu sifru \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+		std::cin.clear();
+		std::cin >> sifra;
+		std::cout << '\n';
+	}
+}
+
+void obrisiIzListeStudenata(std::vector<Student> &listaStudenata){
+	std::cout << "Ulazite u obrisiIzListeStudenata \n";
+	std::cout << "Nadjite studenta kojeg zelite izbrisati po JMBG-u (13 znakova): \n\n";
+
+	prikazListeStudenata(listaStudenata);
+	std::cout << "\n\n";
+
+	std::cout << "JMBG: ";
+	std::string jmbgS;
+	std::cin.clear();
+	std::cin >> jmbgS;
+	std::cout << '\n';
+
+	while(jmbgS != "//"){
+		bool found = false;
+
+		for(unsigned int i = 0; i < listaStudenata.size(); i++){
+			if(listaStudenata[i].getJmbg() == jmbgS){
+				listaStudenata[i] = listaStudenata.back();
+				listaStudenata.pop_back();
+				found = true;
+				i--;
+				break;
+			}
+		}
+
+		if(!found){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje studenta, unesite novi JMBG \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+		std::cin.clear();
+		std::cin >> jmbgS;
+		std::cout << '\n';
+	}
+}
+
+void obrisiIzListeUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja){
+	std::cout << "Ulazite u obrisiIzListeUsmjerenja \n";
+	std::cout << "Nadjite usmjerenje koje zelite izbrisati po kratici (2 znaka): \n\n";
+
+	prikazListeUsmjerenja(listaUsmjerenja);
+	std::cout << "\n\n";
+
+	std::cout << "JMBG: ";
+	std::string kratica;
+	std::cin.clear();
+	std::cin >> kratica;
+	std::cout << '\n';
+
+	while(kratica != "//"){
+		bool found = false;
+
+		for(int i = 0; i < listaUsmjerenja.size(); i++){
+			if(listaUsmjerenja[i].getShortName() == kratica){
+				listaUsmjerenja[i] = listaUsmjerenja.back();
+				listaUsmjerenja.pop_back();
+				found = true;
+				i--;
+				break;
+			}
+		}
+
+		if(!found){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje nastavnika, unesite novi JMBG \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+		std::cin.clear();
+		std::cin >> kratica;
+		std::cout << '\n';
+	}
+}
+
+void obrisiIzListeIspita(std::vector<Ispit> &listaIspita){
+	std::cout << "Ulazite u obrisiIzListeUsmjerenja \n";
+	std::cout << "Nadjite usmjerenje koje zelite izbrisati po kratici (2 znaka): \n\n";
+
+	prikazListeIspita(listaIspita);
+	std::cout << "\n\n";
+
+	std::cout << "JMBG profesora: ";
+	std::string jmbgP;
+	std::cin.clear();
+	std::cin >> jmbgP;
+	std::cout << '\n';
+
+	std::cout << "brIndexa Studenta: ";
+	std::string brIndexa;
+	std::cin.clear();
+	std::cin >> brIndexa;
+	std::cout << '\n';
+
+	std::cout << "Kratica predmeta: ";
+	std::string kraticaP;
+	std::cin.clear();
+	std::cin >> kraticaP;
+	std::cout << '\n';
+
+	while(jmbgP != "//"){
+		bool found = false;
+
+		for(int i = 0; i < listaIspita.size(); i++){
+			if(listaIspita[i].getProfesorJmbg() == jmbgP &&
+					listaIspita[i].getPredmetShort() == kraticaP &&
+					listaIspita[i].getStudentIndexNr() == brIndexa
+					){
+				listaIspita[i] = listaIspita.back();
+				listaIspita.pop_back();
+				found = true;
+				i--;
+				break;
+			}
+		}
+
+		if(!found){
+			std::cout << "Nastavnik sa takvim JMBG-om ne postoji u bazi \n";
+		}
+
+		std::cout << "Za brisanje ispita, unesite novi JMBG profesora, brIndexa Studenta i kraticu predmeta \n";
+		std::cout << "Za izlazak iz akcije brisanja, upisite // \n\n";
+
+		std::cin.clear();
+		std::cout << "JMBG profesora: ";
+		std::cin >> jmbgP;
+		std::cout << '\n';
+
+		std::cout << "brIndexa Studenta: ";
+		std::string brIndexa;
+		std::cin.clear();
+		std::cin >> brIndexa;
+		std::cout << '\n';
+
+		std::cout << "Kratica predmeta: ";
+		std::string kraticaP;
+		std::cin.clear();
+		std::cin >> kraticaP;
 		std::cout << '\n';
 	}
 }

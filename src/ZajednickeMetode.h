@@ -52,6 +52,11 @@ void promjeniUsmjerenje(Usmjerenje &aUsmjerenje);
 void promjeniIspit(Ispit &aIspit);
 
 void obrisiIzListeNastavnika(std::vector<Nastavnik> &listaNastavnika);
+void obrisiIzListeStudijskihPrograma(std::vector<StudijskiProgram> &listaSP);
+void obrisiIzListePredmeta(std::vector<Predmet> &listaPredmeta);
+void obrisiIzListeStudenata(std::vector<Student> &listaStudenata);
+void obrisiIzListeUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja);
+void obrisiIzListeIspita(std::vector<Ispit> &listaIspita);
 
 
 #endif /* ZAJEDNICKEMETODE_H_ */

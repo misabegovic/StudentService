@@ -166,11 +166,15 @@ void obrisiPodatke(){
 		if( aTemp == "nastavnici"){
 			obrisiIzListeNastavnika(nastavnici);
 		}else if(aTemp == "studijskiProgrami"){
+			obrisiIzListeStudijskihPrograma(studijskiProgrami);
 		}else if(aTemp == "predmeti"){
+			obrisiIzListePredmeta(predmeti);
 		}else if(aTemp == "studenti"){
+			obrisiIzListeStudenata(studenti);
 		}else if(aTemp == "usmjerenja"){
+			obrisiIzListeUsmjerenja(usmjerenja);
 		}else if(aTemp == "ispiti"){
-
+			obrisiIzListeIspita(ispiti);
 		}else{
 			std::cout << "Niste unijeli ispravan naziv liste\n";
 		}
