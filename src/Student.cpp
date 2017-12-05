@@ -9,7 +9,7 @@
 
 
 Student::Student(
-		std::string aJmbg,
+		int aJmbg,
 		std::string aFirstName,
 		std::string aLastName,
 		std::string aIndexNr,
@@ -23,7 +23,7 @@ Student::Student(
 }
 
 Student::Student(){
-	setJmbg("");
+	setJmbg(0000000000000);
 	setFirstName("");
 	setLastName("");
 	brIndexa = "";

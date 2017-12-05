@@ -148,6 +148,8 @@ std::vector<Nastavnik> readNastavnikFile(){
 	std::string aPosition;
 	std::string aSubject;
 
+	int aIntJmbg;
+
 	std::ifstream myfile ("datoteke/nastavnik.dat");
 	if (myfile.is_open())
 	{
@@ -163,8 +165,10 @@ std::vector<Nastavnik> readNastavnikFile(){
 			getline(tokenizer,aPosition,'#');
 			getline(tokenizer,aSubject);
 
+			std::stringstream(aJmbg) >> aIntJmbg;
+
 			Nastavnik aNastavnik(
-					aJmbg,
+					aIntJmbg,
 					aFirstName,
 					aLastName,
 					aPosition,
@@ -228,6 +232,13 @@ std::vector<Predmet> readPredmetFile(){
 	std::string aNosiEcts;
 	std::string aTrajeSemestara;
 
+	int uSemInt;
+	int predInt;
+	int audVjezInt;
+	int labVjezInt;
+	int ectsInt;
+	int trajeSemInt;
+
 	std::ifstream myfile ("datoteke/predmet.dat");
 	if (myfile.is_open())
 	{
@@ -248,17 +259,24 @@ std::vector<Predmet> readPredmetFile(){
 			getline (tokenizer,aNosiEcts,'#');
 			getline (tokenizer,aTrajeSemestara, '\n');
 
+			std::stringstream(aUSemestru) >> uSemInt;
+			std::stringstream(aPredavanjaSati) >> predInt;
+			std::stringstream(aAuditorneVjezbeS) >> audVjezInt;
+			std::stringstream(aLabVjezbeS) >> labVjezInt;
+			std::stringstream(aNosiEcts) >> ectsInt;
+			std::stringstream(aTrajeSemestara) >> trajeSemInt;
+
 			Predmet aPredmet(
 					aSifraPredmeta,
 					aNazivPredmeta,
 					aStudijskiP1,
 					aStudijskiP2,
-					aUSemestru,
-					aPredavanjaSati,
-					aAuditorneVjezbeS,
-					aLabVjezbeS,
-					aNosiEcts,
-					aTrajeSemestara
+					uSemInt,
+					predInt,
+					audVjezInt,
+					labVjezInt,
+					ectsInt,
+					trajeSemInt
 					);
 
 			kolekcijaPredmeta.push_back(aPredmet);
@@ -282,6 +300,8 @@ std::vector<Student> readStudentFile(){
 	std::string aBrIndexa;
 	std::string aSmijer;
 
+	int aIntJmbg;
+
 	std::ifstream myfile ("datoteke/student.dat");
 	if (myfile.is_open())
 	{
@@ -297,8 +317,10 @@ std::vector<Student> readStudentFile(){
 			getline (tokenizer,aBrIndexa,'#');
 			getline (tokenizer,aSmijer,'\n');
 
+			std::stringstream(aJmbg) >> aIntJmbg;
+
 			Student aStudent(
-					aJmbg,
+					aIntJmbg,
 					aFirstName,
 					aLastName,
 					aBrIndexa,

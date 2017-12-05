@@ -13,12 +13,42 @@ void prikazListeNastavnika(std::vector<Nastavnik> listaNastavnika){
 	std::cout << std::endl;
 }
 
+void prikazListeStudijskihPrograma(std::vector<StudijskiProgram> studijskiProgrami){
+	std::cout << "\nStudijski Programi: \n\n";
+	ispisiListu(studijskiProgrami);
+	std::cout << std::endl;
+}
+
+void prikazListePredmeta(std::vector<Predmet> predmeti){
+	std::cout << "\nPredmeti: \n\n";
+	ispisiListu(predmeti);
+	std::cout << std::endl;
+}
+
+void prikazListeStudenata(std::vector<Student> studenti){
+	std::cout << "\nStudenti: \n\n";
+	ispisiListu(studenti);
+	std::cout << std::endl;
+}
+
+void prikazListeUsmjerenja(std::vector<Usmjerenje> usmjerenja){
+	std::cout << "\nUsmjerenja: \n\n";
+	ispisiListu(usmjerenja);
+	std::cout << std::endl;
+}
+
+void prikazListeIspita(std::vector<Ispit> ispiti){
+	std::cout << "\nIspiti: \n\n";
+	ispisiListu(ispiti);
+	std::cout << std::endl;
+}
+
 std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik> listaNastavnika){
 
 	std::cout << "Ulazite u promjeniNastavnika \n";
 	std::cout << "Nadjite nastavnika kojeg zelite promjeniti po JMBG: \n\n";
 
-	std::string jmbgNastavnika;
+	int jmbgNastavnika;
 	std::cin >> jmbgNastavnika;
 	bool nastavnikFound = false;
 	std::vector<Nastavnik>::iterator iter;
@@ -36,6 +66,54 @@ std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik> listaNasta
 
 	return listaNastavnika;
 
+}
+
+std::vector<StudijskiProgram> promjeniListuStudijskihPrograma(std::vector<StudijskiProgram> studijskiProgrami){
+
+	std::cout << "Ulazite u promjeniListuStudijskihPrograma \n";
+	std::cout << "Nadjite studijski program kojega zelite promjeniti po kratici (2 slova): \n\n";
+
+	std::string shortTitle;
+	std::cin >> shortTitle;
+	bool spFound = false;
+	std::vector<StudijskiProgram>::iterator iter;
+
+	for(iter = studijskiProgrami.begin(); iter != studijskiProgrami.end(); ++iter){
+		if((*iter).getShortTitle() == shortTitle){
+			promjeniStudijskiProgram((*iter));
+			spFound = true;
+		}
+	}
+
+	if(!spFound){
+		std::cout << "Studijski Program sa takvom kraticom ne postoji u bazi \n";
+	}
+
+	return studijskiProgrami;
+}
+
+std::vector<Predmet> promjeniListuPredmeta(std::vector<Predmet> listaPredmeta){
+
+	std::cout << "Ulazite u promjeniListuPredmeta \n";
+	std::cout << "Nadjite predmet koji zelite promjeniti po sifri (2 slova): \n\n";
+
+	std::string sifraPredmeta;
+	std::cin >> sifraPredmeta;
+	bool spFound = false;
+	std::vector<Predmet>::iterator iter;
+
+	for(iter = listaPredmeta.begin(); iter != listaPredmeta.end(); ++iter){
+		if((*iter).getSifraP() == sifraPredmeta){
+			promjeniPredmet((*iter));
+			spFound = true;
+		}
+	}
+
+	if(!spFound){
+		std::cout << "Predmet sa takvom kraticom ne postoji u bazi \n";
+	}
+
+	return listaPredmeta;
 }
 
 void promjeniNastavnika(Nastavnik &aNastavnik){
@@ -87,36 +165,6 @@ void promjeniNastavnika(Nastavnik &aNastavnik){
 	aNastavnik.ispisiPodatke();
 }
 
-void prikazListeStudijskihPrograma(std::vector<StudijskiProgram> studijskiProgrami){
-	std::cout << "\nStudijski Programi: \n\n";
-	ispisiListu(studijskiProgrami);
-	std::cout << std::endl;
-}
-
-std::vector<StudijskiProgram> promjeniListuStudijskihPrograma(std::vector<StudijskiProgram> studijskiProgrami){
-
-	std::cout << "Ulazite u promjeniListuStudijskihPrograma \n";
-	std::cout << "Nadjite studijski program kojega zelite promjeniti po kratici (2 slova): \n\n";
-
-	std::string shortTitle;
-	std::cin >> shortTitle;
-	bool spFound = false;
-	std::vector<StudijskiProgram>::iterator iter;
-
-	for(iter = studijskiProgrami.begin(); iter != studijskiProgrami.end(); ++iter){
-		if((*iter).getShortTitle() == shortTitle){
-			promjeniStudijskiProgram((*iter));
-			spFound = true;
-		}
-	}
-
-	if(!spFound){
-		std::cout << "Studijski Program sa takvom kraticom ne postoji u bazi \n";
-	}
-
-	return studijskiProgrami;
-}
-
 void promjeniStudijskiProgram(StudijskiProgram &aSP){
 	std::cout << "Studijski program prije editovanja: \n\n";
 	aSP.ispisiPodatke();
@@ -162,26 +210,105 @@ void promjeniStudijskiProgram(StudijskiProgram &aSP){
 	aSP.ispisiPodatke();
 }
 
-void prikazListePredmeta(std::vector<Predmet> predmeti){
-	std::cout << "\nPredmeti: \n\n";
-	ispisiListu(predmeti);
-	std::cout << std::endl;
-}
+void promjeniPredmet(Predmet &aPredmet){
+	std::cout << "Studijski program prije editovanja: \n\n";
+	aPredmet.ispisiPodatke();
 
-void prikazListeStudenata(std::vector<Student> studenti){
-	std::cout << "\nStudenti: \n\n";
-	ispisiListu(studenti);
-	std::cout << std::endl;
-}
+	std::cout << "Sta zelite promjeniti? \n\n";
+	std::cout << "Upisite // kada zavrsite sa promjenama \n";
+	std::cout << "Dostupno za promjenu: \n\n";
+	std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram1, studijskiProgram2 \n";
+	std::cout << "uSemestru, predavanjaSati, auditorneSati \n";
+	std::cout << "labVjezbeSati , nosiEcts , trajeSemestara \n\n";
 
-void prikazListeUsmjerenja(std::vector<Usmjerenje> usmjerenja){
-	std::cout << "\nUsmjerenja: \n\n";
-	ispisiListu(usmjerenja);
-	std::cout << std::endl;
-}
+	std::string aTemp;
+	std::cin >> aTemp;
 
-void prikazListeIspita(std::vector<Ispit> ispiti){
-	std::cout << "\nIspiti: \n\n";
-	ispisiListu(ispiti);
-	std::cout << std::endl;
+	while(aTemp != "//"){
+
+		if( aTemp == "sifraPredmeta"){
+			std::cout << "Upisite novu sifru predmeta koju zelite (2 slova): \n\n";
+			std::string aSifra;
+			std::cin >> aSifra;
+			while(aSifra.length() <= 0 || aSifra.length() > 2){
+				std::cout << "Ponovo upisite novu sifru koje zelite\n";
+				std::cout << "Ne smije biti duza od 2 slova: \n\n";
+				std::cin.clear();
+				std::cin >> aSifra;
+			}
+			aPredmet.setSifraP(aSifra);
+		}else if(aTemp == "nazivPredmeta"){
+			std::cout << "Upisite novi naziv koje zelite: \n\n";
+			std::string aPuniNaziv;
+			std::cin >> aPuniNaziv;
+			aPredmet.setNazivP(aPuniNaziv);
+		}else if(aTemp == "studijskiProgram1"){
+			std::cout << "Upisite novu kraticu za studijski program 1 (2 slova): \n\n";
+			std::string kratica;
+			std::cin >> kratica;
+			while(kratica.length() <= 0 || kratica.length() > 2){
+				std::cout << "Ponovo upisite novu sifru koje zelite\n";
+				std::cout << "Ne smije biti duza od 2 slova: \n\n";
+				std::cin.clear();
+				std::cin >> kratica;
+			}
+			aPredmet.setSP1(kratica);
+		}else if(aTemp == "studijskiProgram2"){
+			std::cout << "Upisite novu kraticu za studijski program 2 (2 slova): \n\n";
+			std::string kratica;
+			std::cin >> kratica;
+			while(kratica.length() <= 0 || kratica.length() > 2){
+				std::cout << "Ponovo upisite novu sifru koje zelite\n";
+				std::cout << "Ne smije biti duza od 2 slova: \n\n";
+				std::cin.clear();
+				std::cin >> kratica;
+			}
+			aPredmet.setSP2(kratica);
+		}else if(aTemp == "uSemestru"){
+			std::cout << "Upisite novi broj semestra kojem zelite dodjeliti predmet: \n\n";
+			int brSem;
+			std::cin >> brSem;
+			aPredmet.setUSemestru(brSem);
+		}else if(aTemp == "predavanjaSati"){
+			std::cout << "Upisite novi broj sedmicnih sati za predavanje: \n\n";
+			int brSati;
+			std::cin >> brSati;
+			aPredmet.setPredavanjaSati(brSati);
+		}else if(aTemp == "auditorneSati"){
+			std::cout << "Upisite novi broj sedmicnih sati za auditorne vjezbe: \n\n";
+			int brSati;
+			std::cin >> brSati;
+			aPredmet.setAuditorneSati(brSati);
+		}else if(aTemp == "labVjezbeSati"){
+			std::cout << "Upisite novi broj sedmicnih sati za laboratorijske vjezbe: \n\n";
+			int brSati;
+			std::cin >> brSati;
+			aPredmet.setLabVSati(brSati);
+		}else if(aTemp == "nosiEcts"){
+			std::cout << "Upisite novi broj ECTS-ova za predmet: \n\n";
+			int brEcts;
+			std::cin >> brEcts;
+			aPredmet.setNosiEcts(brEcts);
+		}else if(aTemp == "trajeSemestara"){
+			std::cout << "Upisite trajanjeSemestara za predmet: \n\n";
+			int brSemestara;
+			std::cin >> brSemestara;
+			aPredmet.setTrajeSemestara(brSemestara);
+		}else{
+			std::cout << "Niste unijeli ispravan naziv varijable \n";
+		}
+
+		std::cout << "Upisite // kada zavrsite sa promjenama \n";
+		std::cout << "Dostupno za promjenu: \n\n";
+		std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram1, studijskiProgram2 \n";
+		std::cout << "uSemestru, predavanjaSati, auditorneSati \n";
+		std::cout << "labVjezbeSati , nosiEcts , trajeSemestara \n\n";
+
+		std::cin.clear();
+		std::cin >> aTemp;
+
+	}
+
+	std::cout << "Studijski program poslije editovanja: \n\n";
+	aPredmet.ispisiPodatke();
 }

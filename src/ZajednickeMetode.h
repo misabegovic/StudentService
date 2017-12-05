@@ -37,9 +37,11 @@ void prikazListeIspita(std::vector<Ispit>);
 
 std::vector<Nastavnik> promjeniListuNastavnika(std::vector<Nastavnik>);
 std::vector<StudijskiProgram> promjeniListuStudijskihPrograma(std::vector<StudijskiProgram>);
+std::vector<Predmet> promjeniListuPredmeta(std::vector<Predmet>);
 
 void promjeniNastavnika(Nastavnik &aNastavnik);
 void promjeniStudijskiProgram(StudijskiProgram &aSP);
+void promjeniPredmet(Predmet &aSP);
 
 
 #endif /* ZAJEDNICKEMETODE_H_ */

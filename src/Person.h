@@ -12,17 +12,17 @@
 
 class Person {
 private:
-	std::string jmbg;
+	int jmbg;
 	std::string firstName;
 	std::string lastName;
 public:
 	Person();
-	Person(std::string aJmbg, std::string aFirstName, std::string aLastName);
+	Person(int aJmbg, std::string aFirstName, std::string aLastName);
 	virtual ~Person();
-	std::string getJmbg() { return jmbg; }
+	int getJmbg() { return jmbg; }
 	std::string getFirstName() { return firstName; }
 	std::string getLastName() { return lastName; }
-	void setJmbg(std::string aJmbg){ jmbg = aJmbg; }
+	void setJmbg(int aJmbg){ jmbg = aJmbg; }
 	void setFirstName(std::string aFirstName){ firstName = aFirstName; }
 	void setLastName(std::string aLastName){ lastName = aLastName; }
 };

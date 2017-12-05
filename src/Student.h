@@ -18,7 +18,7 @@ private:
 	std::string smjer;
 public:
 	Student();
-	Student(std::string, std::string, std::string, std::string, std::string);
+	Student(int, std::string, std::string, std::string, std::string);
 	virtual ~Student();
 	std::string getBrIndexa(){ return brIndexa; }
 	std::string getSmjer(){ return smjer; }

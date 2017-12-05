@@ -123,6 +123,7 @@ void promjeniPodatke(){
 		}else if(aTemp == "studijskiProgrami"){
 			studijskiProgrami = promjeniListuStudijskihPrograma(studijskiProgrami);
 		}else if(aTemp == "predmeti"){
+			predmeti = promjeniListuPredmeta(predmeti);
 		}else if(aTemp == "studenti"){
 		}else if(aTemp == "usmjerenja"){
 		}else if(aTemp == "ispiti"){
