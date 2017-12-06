@@ -879,3 +879,444 @@ void obrisiIzListeIspita(std::vector<Ispit> &listaIspita){
 		std::cout << '\n';
 	}
 }
+
+void dodajUListuNastavnika(std::vector<Nastavnik> &listaNastavnika){
+
+	std::cout << "Ulazite u dodajUListuNastavnika \n\n";
+
+	prikazListeNastavnika(listaNastavnika);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novog nastavnika: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novog nastavnika? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n JMBG (13 znakova): ";
+		std::string jmbgNastavnika;
+		std::cin.clear();
+		std::cin >> jmbgNastavnika;
+		std::cout << '\n';
+		while(jmbgNastavnika.length()!= 13){
+			std::cout << "JMBG mora biti 13 znakova duzine\n";
+			std::cout << "JMBG: ";
+			std::cin.clear();
+			std::cin >> jmbgNastavnika;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Ime: ";
+		std::string firstName;
+		std::cin.clear();
+		std::cin >> firstName;
+		std::cout << '\n';
+
+		std::cout << "\n Prezime: ";
+		std::string lastName;
+		std::cin.clear();
+		std::cin >> lastName;
+		std::cout << '\n';
+
+		std::cout << "\n Pozicija: ";
+		std::string position;
+		std::cin.clear();
+		std::cin >> position;
+		std::cout << '\n';
+
+		std::cout << "\n Predmet: ";
+		std::string subject;
+		std::cin.clear();
+		std::cin >> subject;
+		std::cout << '\n';
+
+		Nastavnik aNewNastavnik(
+				jmbgNastavnika,
+				firstName,
+				lastName,
+				position,
+				subject
+		);
+
+		listaNastavnika.push_back(aNewNastavnik);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuNastavnika \n\n";
+
+}
+
+void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP){
+
+	std::cout << "Ulazite u dodajUListuStudijskihPrograma \n\n";
+
+	prikazListeStudijskihPrograma(listaSP);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novog studijskog programa: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novi studijski program? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n Kratica (2 slova): ";
+		std::string shortName;
+		std::cin.clear();
+		std::cin >> shortName;
+		std::cout << '\n';
+		while(shortName.length() > 2 || shortName.length() <= 0){
+			std::cout << "Kratica moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Kratica: ";
+			std::cin.clear();
+			std::cin >> shortName;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Ime: ";
+		std::string fullName;
+		std::cin.clear();
+		std::cin >> fullName;
+		std::cout << '\n';
+
+		StudijskiProgram aNewStudijskiProgram(
+				shortName,
+				fullName
+		);
+
+		listaSP.push_back(aNewStudijskiProgram);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuStudijskihPrograma \n\n";
+
+}
+
+void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta){
+	std::cout << "Ulazite u dodajUListuPredmeta \n\n";
+
+	prikazListePredmeta(listaPredmeta);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novog predmeta: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novi predmet? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n Sifra Predmeta (2 slova): ";
+		std::string shortName;
+		std::cin.clear();
+		std::cin >> shortName;
+		std::cout << '\n';
+		while(shortName.length() > 2 || shortName.length() <= 0){
+			std::cout << "Sifra Predmeta moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Sifra Predmeta: ";
+			std::cin.clear();
+			std::cin >> shortName;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Naziv Predmeta: ";
+		std::string fullName;
+		std::cin.clear();
+		std::cin >> fullName;
+		std::cout << '\n';
+
+		std::cout << "\n Studijski Program 1 Kratica (2 slova): ";
+		std::string studijskiP1;
+		std::cin.clear();
+		std::cin >> studijskiP1;
+		std::cout << '\n';
+		while(studijskiP1.length() > 2 || studijskiP1.length() <= 0){
+			std::cout << "Studijski Program 1 Kratica moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Studijski Program 1 Kratica: ";
+			std::cin.clear();
+			std::cin >> studijskiP1;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Studijski Program 2 Kratica (2 slova): ";
+		std::string studijskiP2;
+		std::cin.clear();
+		std::cin >> studijskiP2;
+		std::cout << '\n';
+		while(studijskiP2.length() > 2 || studijskiP2.length() <= 0){
+			std::cout << "Studijski Program 2 Kratica moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Studijski Program 2 Kratica: ";
+			std::cin.clear();
+			std::cin >> studijskiP2;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n U semestru (broj): ";
+		int uSemestru;
+		std::cin.clear();
+		std::cin >> uSemestru;
+		std::cout << '\n';
+
+		std::cout << "\n Sedmicni sati predavanja: ";
+		int aPredavanjaSati;
+		std::cin.clear();
+		std::cin >> aPredavanjaSati;
+		std::cout << '\n';
+
+		std::cout << "\n Sedmicni sati auditornih vjezbi: ";
+		int aAuditorneVjezbeS;
+		std::cin.clear();
+		std::cin >> aAuditorneVjezbeS;
+		std::cout << '\n';
+
+		std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
+		int aLabVjezbeS;
+		std::cin.clear();
+		std::cin >> aLabVjezbeS;
+		std::cout << '\n';
+
+		std::cout << "\n Nosi Ects: ";
+		int aNosiEcts;
+		std::cin.clear();
+		std::cin >> aNosiEcts;
+		std::cout << '\n';
+
+		std::cout << "\n Traje semestara (broj): ";
+		int aTrajeSemestara;
+		std::cin.clear();
+		std::cin >> aTrajeSemestara;
+		std::cout << '\n';
+
+		Predmet aNewPredmet(
+				shortName,
+				fullName,
+				studijskiP1,
+				studijskiP2,
+				uSemestru,
+				aPredavanjaSati,
+				aAuditorneVjezbeS,
+				aLabVjezbeS,
+				aNosiEcts,
+				aTrajeSemestara
+		);
+
+		listaPredmeta.push_back(aNewPredmet);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuPredmeta \n\n";
+
+}
+
+void dodajUListuStudenata(std::vector<Student> &listaStudenata){
+
+	std::cout << "Ulazite u dodajUListuStudenata \n\n";
+
+	prikazListeStudenata(listaStudenata);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novog studenta: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novog studenta? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n JMBG (13 znakova): ";
+		std::string jmbgS;
+		std::cin.clear();
+		std::cin >> jmbgS;
+		std::cout << '\n';
+		while(jmbgS.length()!= 13){
+			std::cout << "JMBG mora biti 13 znakova duzine\n";
+			std::cout << "JMBG: ";
+			std::cin.clear();
+			std::cin >> jmbgS;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Ime: ";
+		std::string firstName;
+		std::cin.clear();
+		std::cin >> firstName;
+		std::cout << '\n';
+
+		std::cout << "\n Prezime: ";
+		std::string lastName;
+		std::cin.clear();
+		std::cin >> lastName;
+		std::cout << '\n';
+
+		std::cout << "\n Broj Indexa: ";
+		std::string brIndex;
+		std::cin.clear();
+		std::cin >> brIndex;
+		std::cout << '\n';
+
+		std::cout << "\n Smjer: ";
+		std::string smjer;
+		std::cin.clear();
+		std::cin >> smjer;
+		std::cout << '\n';
+
+		Student aNewStudent(
+				jmbgS,
+				firstName,
+				lastName,
+				brIndex,
+				smjer
+		);
+
+		listaStudenata.push_back(aNewStudent);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuStudenata \n\n";
+
+}
+
+void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja){
+
+	std::cout << "Ulazite u dodajUListuUsmjerenja \n\n";
+
+	prikazListeUsmjerenja(listaUsmjerenja);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novog usmjerenja: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novog usmjerenja? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n Kratica Usmjerenja (2 slova): ";
+		std::string shortName;
+		std::cin.clear();
+		std::cin >> shortName;
+		std::cout << '\n';
+		while(shortName.length() > 2 || shortName.length() <= 0){
+			std::cout << "Kratica Usmjerenja moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Kratica Usmjerenja: ";
+			std::cin.clear();
+			std::cin >> shortName;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Naziv Usmjerenja: ";
+		std::string fullName;
+		std::cin.clear();
+		std::cin >> fullName;
+		std::cout << '\n';
+
+		std::cout << "\n Studijski Program Kratica (2 slova): ";
+		std::string studijskiP;
+		std::cin.clear();
+		std::cin >> studijskiP;
+		std::cout << '\n';
+		while(studijskiP.length() > 2 || studijskiP.length() <= 0){
+			std::cout << "Studijski Program Kratica moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Studijski Program Kratica: ";
+			std::cin.clear();
+			std::cin >> studijskiP;
+			std::cout << '\n';
+		}
+
+		Usmjerenje aNewUsmjerenje(
+				shortName,
+				fullName,
+				studijskiP
+		);
+
+		listaUsmjerenja.push_back(aNewUsmjerenje);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuUsmjerenja \n\n";
+
+}
+
+void dodajUListuIspita(std::vector<Ispit> &listaIspita){
+
+	std::cout << "Ulazite u dodajUListuIspita \n\n";
+
+	prikazListeIspita(listaIspita);
+	std::cout << "\n\n";
+
+	std::cout << "Ulazite u prostor za dodavanje novi ispit: \n\n";
+	std::cout << "Jeste li sigurni da zelite dodati novi ispit? \n";
+
+	std::cout << "Potvrdite sa DA ili NE: ";
+	std::string confirmation;
+	std::cin >> confirmation;
+
+	if(confirmation == "DA"){
+
+		std::cout << "\n Sifra Predmeta (2 slova): ";
+		std::string shortName;
+		std::cin.clear();
+		std::cin >> shortName;
+		std::cout << '\n';
+		while(shortName.length() > 2 || shortName.length() <= 0){
+			std::cout << "Sifra Predmeta moze biti maksimalno 2 slova duzine\n";
+			std::cout << "Sifra Predmeta: ";
+			std::cin.clear();
+			std::cin >> shortName;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Profesorov JMBG (13 znakova): ";
+		std::string profesorJmbg;
+		std::cin.clear();
+		std::cin >> profesorJmbg;
+		std::cout << '\n';
+		while(profesorJmbg.length()!= 13){
+			std::cout << "JMBG mora biti 13 znakova duzine\n";
+			std::cout << "JMBG: ";
+			std::cin.clear();
+			std::cin >> profesorJmbg;
+			std::cout << '\n';
+		}
+
+		std::cout << "\n Broj Indexa: ";
+		std::string brIndex;
+		std::cin.clear();
+		std::cin >> brIndex;
+		std::cout << '\n';
+
+		std::cout << "\n Datum: ";
+		std::string datum;
+		std::cin.clear();
+		std::cin >> datum;
+		std::cout << '\n';
+
+		std::cout << "\n Ocjena: ";
+		std::string ocjena;
+		std::cin.clear();
+		std::cin >> ocjena;
+		std::cout << '\n';
+
+		Ispit aNewIspit(
+				shortName,
+				profesorJmbg,
+				brIndex,
+				datum,
+				ocjena
+		);
+
+		listaIspita.push_back(aNewIspit);
+
+	}
+
+	std::cout << "Izlazite iz dodajUListuIspita \n\n";
+
+}

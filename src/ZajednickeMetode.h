@@ -58,5 +58,12 @@ void obrisiIzListeStudenata(std::vector<Student> &listaStudenata);
 void obrisiIzListeUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja);
 void obrisiIzListeIspita(std::vector<Ispit> &listaIspita);
 
+void dodajUListuNastavnika(std::vector<Nastavnik> &listaNastavnika);
+void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP);
+void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta);
+void dodajUListuStudenata(std::vector<Student> &listaStudenata);
+void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja);
+void dodajUListuIspita(std::vector<Ispit> &listaIspita);
+
 
 #endif /* ZAJEDNICKEMETODE_H_ */

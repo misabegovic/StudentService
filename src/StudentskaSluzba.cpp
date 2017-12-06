@@ -22,6 +22,7 @@ static std::vector<Ispit> ispiti;
 void prikaziListu();
 void promjeniPodatke();
 void obrisiPodatke();
+void dodajPodatke();
 
 int main ()
 {
@@ -34,6 +35,7 @@ int main ()
 
 	std::cout << "Dobro dosli, imate sljedece opcije: " << '\n' << '\n';
 	std::cout << "Za prikaz trenutne liste iz baze, kucate -> prikaziListu" << "\n";
+	std::cout << "Za dodavanje novih podataka u baze, kucate -> dodajPodatke" << "\n";
 	std::cout << "Za promjenu postojecih podataka iz baze, kucate -> promjeniPodatke" << "\n";
 	std::cout << "Za brisanje podataka iz baze, kucate -> obrisiPodatke" << "\n\n";
 	std::cout << "Za izlaz iz programa, ukucajte // \n\n";
@@ -50,6 +52,8 @@ int main ()
 			promjeniPodatke();
 		}else if(temp == "obrisiPodatke"){
 			obrisiPodatke();
+		}else if(temp == "dodajPodatke"){
+			dodajPodatke();
 		}else{
 			std::cout << "Unijeli ste nepostojecu komandu, pokusajte ponovo: " << '\n' << '\n';
 		}
@@ -188,4 +192,44 @@ void obrisiPodatke(){
 	}
 
 	std::cout << "Izlazite iz obrisiPodatke \n\n";
+}
+
+void dodajPodatke(){
+
+	std::cout << "Ulazite u dodajPodatke \n\n";
+
+	std::cout << "U koju listu zelite dodati? " << '\n';
+	std::cout << "nastavnici , studijskiProgrami, predmeti, studenti, usmjerenja, ispiti" << "\n\n";
+	std::cout << "za izlaz iz dodajPodatke, ukucajte // \n\n";
+
+	std::string aTemp;
+	std::cin >> aTemp;
+
+	while(aTemp != "//"){
+		if( aTemp == "nastavnici"){
+			dodajUListuNastavnika(nastavnici);
+		}else if(aTemp == "studijskiProgrami"){
+			dodajUListuStudijskihPrograma(studijskiProgrami);
+		}else if(aTemp == "predmeti"){
+			dodajUListuPredmeta(predmeti);
+		}else if(aTemp == "studenti"){
+			dodajUListuStudenata(studenti);
+		}else if(aTemp == "usmjerenja"){
+			dodajUListuUsmjerenja(usmjerenja);
+		}else if(aTemp == "ispiti"){
+			dodajUListuIspita(ispiti);
+		}else{
+			std::cout << "Niste unijeli ispravan naziv liste\n";
+		}
+
+		std::cout << "U koju listu zelite dodati? " << '\n';
+		std::cout << "nastavnici , studijskiProgrami, predmeti, studenti, usmjerenja, ispiti" << "\n\n";
+		std::cout << "za izlaz iz dodajPodatke, ukucajte // \n\n";
+
+		std::cin.clear();
+		std::cin >> aTemp;
+	}
+
+	std::cout << "Izlazite iz dodajPodatke \n\n";
+
 }
