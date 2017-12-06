@@ -59,6 +59,7 @@ int main ()
 		}
 
 		std::cout << "Za prikaz trenutne liste iz baze, kucate -> prikaziListu" << "\n";
+		std::cout << "Za dodavanje novih podataka u baze, kucate -> dodajPodatke" << "\n";
 		std::cout << "Za promjenu postojecih podataka iz baze, kucate -> promjeniPodatke" << "\n";
 		std::cout << "Za brisanje podataka iz baze, kucate -> obrisiPodatke" << "\n\n";
 		std::cout << "Za izlaz iz programa, ukucajte // \n\n";
@@ -217,7 +218,11 @@ void dodajPodatke(){
 		}else if(aTemp == "usmjerenja"){
 			dodajUListuUsmjerenja(usmjerenja);
 		}else if(aTemp == "ispiti"){
-			dodajUListuIspita(ispiti);
+			dodajUListuIspita(
+					ispiti,
+					nastavnici,
+					studenti,
+					predmeti);
 		}else{
 			std::cout << "Niste unijeli ispravan naziv liste\n";
 		}

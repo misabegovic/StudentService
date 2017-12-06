@@ -30,6 +30,30 @@ void ispisiListu(std::vector<A> aList)
   }
 }
 
+template<class A>
+int nadjiElement(std::vector<A> aList, std::string aJmbgElement)
+{
+  typename std::vector<A>::iterator it;
+  int aReturn = 0;
+
+  for(it = aList.begin(); it != aList.end(); ++it){
+	  if( (*it).getJmbg() == aJmbgElement ){
+		  aReturn = 1;
+	  }
+  }
+
+  return aReturn;
+}
+
+int nadjiStudentaPoIndexu(std::vector<Student> aListaStudenata, std::string aIndexNr);
+int nadjiPredmetPoKratici(std::vector<Predmet> aListaPredmeta, std::string aKratica);
+int nadjiSPPoKratici(std::vector<StudijskiProgram> aListaPredmeta, std::string aKratica);
+int nadjiIspitPoDatumuStudentuPredmetu(
+		std::vector<Ispit> aListaIspita,
+		std::string datum,
+		std::string indexNr,
+		std::string kratica);
+
 void prikazListeNastavnika(std::vector<Nastavnik>);
 void prikazListeStudijskihPrograma(std::vector<StudijskiProgram>);
 void prikazListePredmeta(std::vector<Predmet>);
@@ -63,7 +87,10 @@ void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP);
 void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta);
 void dodajUListuStudenata(std::vector<Student> &listaStudenata);
 void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja);
-void dodajUListuIspita(std::vector<Ispit> &listaIspita);
-
+void dodajUListuIspita(
+		std::vector<Ispit> &listaIspita,
+		std::vector<Nastavnik> &listaNastavnika,
+		std::vector<Student> &listaStudenata,
+		std::vector<Predmet> &listaPredmeta);
 
 #endif /* ZAJEDNICKEMETODE_H_ */

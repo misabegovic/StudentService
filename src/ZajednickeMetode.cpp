@@ -7,6 +7,66 @@
 
 #include "ZajednickeMetode.h"
 
+int nadjiStudentaPoIndexu(std::vector<Student> aListaStudenata, std::string aIndexNr){
+	std::vector<Student>::iterator it;
+	int aReturn = 0;
+
+	for(it = aListaStudenata.begin(); it != aListaStudenata.end(); ++it){
+	  if( (*it).getBrIndexa() == aIndexNr ){
+		  aReturn = 1;
+	  }
+	}
+
+	return aReturn;
+}
+
+int nadjiPredmetPoKratici(std::vector<Predmet> aListaPredmeta, std::string aKratica){
+	std::vector<Predmet>::iterator it;
+	int aReturn = 0;
+
+	for(it = aListaPredmeta.begin(); it != aListaPredmeta.end(); ++it){
+	  if( (*it).getSifraP() == aKratica ){
+		  aReturn = 1;
+	  }
+	}
+
+	return aReturn;
+}
+
+int nadjiSPPoKratici(std::vector<StudijskiProgram> aListaPredmeta, std::string aKratica){
+	std::vector<StudijskiProgram>::iterator it;
+	int aReturn = 0;
+
+	for(it = aListaPredmeta.begin(); it != aListaPredmeta.end(); ++it){
+	  if( (*it).getShortTitle() == aKratica ){
+		  aReturn = 1;
+	  }
+	}
+
+	return aReturn;
+}
+
+int nadjiIspitPoDatumuStudentuPredmetu(
+		std::vector<Ispit> aListaIspita,
+		std::string datum,
+		std::string indexNr,
+		std::string kratica)
+{
+
+	std::vector<Ispit>::iterator it;
+	int aReturn = 0;
+
+	for(it = aListaIspita.begin(); it != aListaIspita.end(); ++it){
+	  if( (*it).getPredmetShort() == kratica &&
+		  (*it).getStudentIndexNr() == indexNr &&
+		  (*it).getTheDate() == datum){
+		  aReturn = 1;
+	  }
+	}
+
+	return aReturn;
+}
+
 void prikazListeNastavnika(std::vector<Nastavnik> listaNastavnika){
 	std::cout << "\nNastavnici: \n\n";
 	ispisiListu(listaNastavnika);
@@ -791,7 +851,7 @@ void obrisiIzListeUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja){
 	while(kratica != "//"){
 		bool found = false;
 
-		for(int i = 0; i < listaUsmjerenja.size(); i++){
+		for(unsigned int i = 0; i < listaUsmjerenja.size(); i++){
 			if(listaUsmjerenja[i].getShortName() == kratica){
 				listaUsmjerenja[i] = listaUsmjerenja.back();
 				listaUsmjerenja.pop_back();
@@ -841,7 +901,7 @@ void obrisiIzListeIspita(std::vector<Ispit> &listaIspita){
 	while(jmbgP != "//"){
 		bool found = false;
 
-		for(int i = 0; i < listaIspita.size(); i++){
+		for(unsigned int i = 0; i < listaIspita.size(); i++){
 			if(listaIspita[i].getProfesorJmbg() == jmbgP &&
 					listaIspita[i].getPredmetShort() == kraticaP &&
 					listaIspita[i].getStudentIndexNr() == brIndexa
@@ -909,40 +969,47 @@ void dodajUListuNastavnika(std::vector<Nastavnik> &listaNastavnika){
 			std::cout << '\n';
 		}
 
-		std::cout << "\n Ime: ";
-		std::string firstName;
-		std::cin.clear();
-		std::cin >> firstName;
-		std::cout << '\n';
+		int jmbgCheck = nadjiElement(listaNastavnika, jmbgNastavnika);
 
-		std::cout << "\n Prezime: ";
-		std::string lastName;
-		std::cin.clear();
-		std::cin >> lastName;
-		std::cout << '\n';
+		if(jmbgCheck == 0){
 
-		std::cout << "\n Pozicija: ";
-		std::string position;
-		std::cin.clear();
-		std::cin >> position;
-		std::cout << '\n';
+			std::cout << "\n Ime: ";
+			std::string firstName;
+			std::cin.clear();
+			std::cin >> firstName;
+			std::cout << '\n';
 
-		std::cout << "\n Predmet: ";
-		std::string subject;
-		std::cin.clear();
-		std::cin >> subject;
-		std::cout << '\n';
+			std::cout << "\n Prezime: ";
+			std::string lastName;
+			std::cin.clear();
+			std::cin >> lastName;
+			std::cout << '\n';
 
-		Nastavnik aNewNastavnik(
-				jmbgNastavnika,
-				firstName,
-				lastName,
-				position,
-				subject
-		);
+			std::cout << "\n Pozicija: ";
+			std::string position;
+			std::cin.clear();
+			std::cin >> position;
+			std::cout << '\n';
 
-		listaNastavnika.push_back(aNewNastavnik);
+			std::cout << "\n Predmet: ";
+			std::string subject;
+			std::cin.clear();
+			std::cin >> subject;
+			std::cout << '\n';
 
+			Nastavnik aNewNastavnik(
+					jmbgNastavnika,
+					firstName,
+					lastName,
+					position,
+					subject
+			);
+
+			listaNastavnika.push_back(aNewNastavnik);
+
+		}else{
+			std::cout << "Nastavnik sa unijetim JMBG-om vec postoji u bazi \n\n";
+		}
 	}
 
 	std::cout << "Izlazite iz dodajUListuNastavnika \n\n";
@@ -978,18 +1045,26 @@ void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP){
 			std::cout << '\n';
 		}
 
-		std::cout << "\n Ime: ";
-		std::string fullName;
-		std::cin.clear();
-		std::cin >> fullName;
-		std::cout << '\n';
+		int checkShort = nadjiSPPoKratici(listaSP, shortName);
 
-		StudijskiProgram aNewStudijskiProgram(
-				shortName,
-				fullName
-		);
+		if(checkShort == 0){
 
-		listaSP.push_back(aNewStudijskiProgram);
+			std::cout << "\n Ime: ";
+			std::string fullName;
+			std::cin.clear();
+			std::cin >> fullName;
+			std::cout << '\n';
+
+			StudijskiProgram aNewStudijskiProgram(
+					shortName,
+					fullName
+			);
+
+			listaSP.push_back(aNewStudijskiProgram);
+
+		}else{
+			std::cout << "Studijski Program sa unesenom kraticom vec postoji u bazi \n\n";
+		}
 
 	}
 
@@ -1025,89 +1100,96 @@ void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta){
 			std::cout << '\n';
 		}
 
-		std::cout << "\n Naziv Predmeta: ";
-		std::string fullName;
-		std::cin.clear();
-		std::cin >> fullName;
-		std::cout << '\n';
+		int shortCheck = nadjiPredmetPoKratici(listaPredmeta, shortName);
 
-		std::cout << "\n Studijski Program 1 Kratica (2 slova): ";
-		std::string studijskiP1;
-		std::cin.clear();
-		std::cin >> studijskiP1;
-		std::cout << '\n';
-		while(studijskiP1.length() > 2 || studijskiP1.length() <= 0){
-			std::cout << "Studijski Program 1 Kratica moze biti maksimalno 2 slova duzine\n";
-			std::cout << "Studijski Program 1 Kratica: ";
+		if(shortCheck == 0){
+
+			std::cout << "\n Naziv Predmeta: ";
+			std::string fullName;
+			std::cin.clear();
+			std::cin >> fullName;
+			std::cout << '\n';
+
+			std::cout << "\n Studijski Program 1 Kratica (2 slova): ";
+			std::string studijskiP1;
 			std::cin.clear();
 			std::cin >> studijskiP1;
 			std::cout << '\n';
-		}
+			while(studijskiP1.length() > 2 || studijskiP1.length() <= 0){
+				std::cout << "Studijski Program 1 Kratica moze biti maksimalno 2 slova duzine\n";
+				std::cout << "Studijski Program 1 Kratica: ";
+				std::cin.clear();
+				std::cin >> studijskiP1;
+				std::cout << '\n';
+			}
 
-		std::cout << "\n Studijski Program 2 Kratica (2 slova): ";
-		std::string studijskiP2;
-		std::cin.clear();
-		std::cin >> studijskiP2;
-		std::cout << '\n';
-		while(studijskiP2.length() > 2 || studijskiP2.length() <= 0){
-			std::cout << "Studijski Program 2 Kratica moze biti maksimalno 2 slova duzine\n";
-			std::cout << "Studijski Program 2 Kratica: ";
+			std::cout << "\n Studijski Program 2 Kratica (2 slova): ";
+			std::string studijskiP2;
 			std::cin.clear();
 			std::cin >> studijskiP2;
 			std::cout << '\n';
+			while(studijskiP2.length() > 2 || studijskiP2.length() <= 0){
+				std::cout << "Studijski Program 2 Kratica moze biti maksimalno 2 slova duzine\n";
+				std::cout << "Studijski Program 2 Kratica: ";
+				std::cin.clear();
+				std::cin >> studijskiP2;
+				std::cout << '\n';
+			}
+
+			std::cout << "\n U semestru (broj): ";
+			int uSemestru;
+			std::cin.clear();
+			std::cin >> uSemestru;
+			std::cout << '\n';
+
+			std::cout << "\n Sedmicni sati predavanja: ";
+			int aPredavanjaSati;
+			std::cin.clear();
+			std::cin >> aPredavanjaSati;
+			std::cout << '\n';
+
+			std::cout << "\n Sedmicni sati auditornih vjezbi: ";
+			int aAuditorneVjezbeS;
+			std::cin.clear();
+			std::cin >> aAuditorneVjezbeS;
+			std::cout << '\n';
+
+			std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
+			int aLabVjezbeS;
+			std::cin.clear();
+			std::cin >> aLabVjezbeS;
+			std::cout << '\n';
+
+			std::cout << "\n Nosi Ects: ";
+			int aNosiEcts;
+			std::cin.clear();
+			std::cin >> aNosiEcts;
+			std::cout << '\n';
+
+			std::cout << "\n Traje semestara (broj): ";
+			int aTrajeSemestara;
+			std::cin.clear();
+			std::cin >> aTrajeSemestara;
+			std::cout << '\n';
+
+			Predmet aNewPredmet(
+					shortName,
+					fullName,
+					studijskiP1,
+					studijskiP2,
+					uSemestru,
+					aPredavanjaSati,
+					aAuditorneVjezbeS,
+					aLabVjezbeS,
+					aNosiEcts,
+					aTrajeSemestara
+			);
+
+			listaPredmeta.push_back(aNewPredmet);
+
+		}else{
+			std::cout << "Studijski Program sa unesenom kraticom vec postoji u bazi \n\n";
 		}
-
-		std::cout << "\n U semestru (broj): ";
-		int uSemestru;
-		std::cin.clear();
-		std::cin >> uSemestru;
-		std::cout << '\n';
-
-		std::cout << "\n Sedmicni sati predavanja: ";
-		int aPredavanjaSati;
-		std::cin.clear();
-		std::cin >> aPredavanjaSati;
-		std::cout << '\n';
-
-		std::cout << "\n Sedmicni sati auditornih vjezbi: ";
-		int aAuditorneVjezbeS;
-		std::cin.clear();
-		std::cin >> aAuditorneVjezbeS;
-		std::cout << '\n';
-
-		std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
-		int aLabVjezbeS;
-		std::cin.clear();
-		std::cin >> aLabVjezbeS;
-		std::cout << '\n';
-
-		std::cout << "\n Nosi Ects: ";
-		int aNosiEcts;
-		std::cin.clear();
-		std::cin >> aNosiEcts;
-		std::cout << '\n';
-
-		std::cout << "\n Traje semestara (broj): ";
-		int aTrajeSemestara;
-		std::cin.clear();
-		std::cin >> aTrajeSemestara;
-		std::cout << '\n';
-
-		Predmet aNewPredmet(
-				shortName,
-				fullName,
-				studijskiP1,
-				studijskiP2,
-				uSemestru,
-				aPredavanjaSati,
-				aAuditorneVjezbeS,
-				aLabVjezbeS,
-				aNosiEcts,
-				aTrajeSemestara
-		);
-
-		listaPredmeta.push_back(aNewPredmet);
-
 	}
 
 	std::cout << "Izlazite iz dodajUListuPredmeta \n\n";
@@ -1130,52 +1212,60 @@ void dodajUListuStudenata(std::vector<Student> &listaStudenata){
 
 	if(confirmation == "DA"){
 
-		std::cout << "\n JMBG (13 znakova): ";
-		std::string jmbgS;
-		std::cin.clear();
-		std::cin >> jmbgS;
-		std::cout << '\n';
-		while(jmbgS.length()!= 13){
-			std::cout << "JMBG mora biti 13 znakova duzine\n";
-			std::cout << "JMBG: ";
-			std::cin.clear();
-			std::cin >> jmbgS;
-			std::cout << '\n';
-		}
-
-		std::cout << "\n Ime: ";
-		std::string firstName;
-		std::cin.clear();
-		std::cin >> firstName;
-		std::cout << '\n';
-
-		std::cout << "\n Prezime: ";
-		std::string lastName;
-		std::cin.clear();
-		std::cin >> lastName;
-		std::cout << '\n';
-
 		std::cout << "\n Broj Indexa: ";
 		std::string brIndex;
 		std::cin.clear();
 		std::cin >> brIndex;
 		std::cout << '\n';
 
-		std::cout << "\n Smjer: ";
-		std::string smjer;
-		std::cin.clear();
-		std::cin >> smjer;
-		std::cout << '\n';
+		int indexCheck = nadjiStudentaPoIndexu(listaStudenata, brIndex);
 
-		Student aNewStudent(
-				jmbgS,
-				firstName,
-				lastName,
-				brIndex,
-				smjer
-		);
+		if(indexCheck == 0){
 
-		listaStudenata.push_back(aNewStudent);
+			std::cout << "\n JMBG (13 znakova): ";
+
+			std::string jmbgS;
+			std::cin.clear();
+			std::cin >> jmbgS;
+			std::cout << '\n';
+			while(jmbgS.length()!= 13){
+				std::cout << "JMBG mora biti 13 znakova duzine\n";
+				std::cout << "JMBG: ";
+				std::cin.clear();
+				std::cin >> jmbgS;
+				std::cout << '\n';
+			}
+
+			std::cout << "\n Ime: ";
+			std::string firstName;
+			std::cin.clear();
+			std::cin >> firstName;
+			std::cout << '\n';
+
+			std::cout << "\n Prezime: ";
+			std::string lastName;
+			std::cin.clear();
+			std::cin >> lastName;
+			std::cout << '\n';
+
+			std::cout << "\n Smjer: ";
+			std::string smjer;
+			std::cin.clear();
+			std::cin >> smjer;
+			std::cout << '\n';
+
+			Student aNewStudent(
+					jmbgS,
+					firstName,
+					lastName,
+					brIndex,
+					smjer
+			);
+
+			listaStudenata.push_back(aNewStudent);
+		}else{
+			std::cout << "Student sa unijetim brojem indexa vec postoji u bazi \n\n";
+		}
 
 	}
 
@@ -1245,7 +1335,11 @@ void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja){
 
 }
 
-void dodajUListuIspita(std::vector<Ispit> &listaIspita){
+void dodajUListuIspita(
+		std::vector<Ispit> &listaIspita,
+		std::vector<Nastavnik> &listaNastavnika,
+		std::vector<Student> &listaStudenata,
+		std::vector<Predmet> &listaPredmeta){
 
 	std::cout << "Ulazite u dodajUListuIspita \n\n";
 
@@ -1266,6 +1360,7 @@ void dodajUListuIspita(std::vector<Ispit> &listaIspita){
 		std::cin.clear();
 		std::cin >> shortName;
 		std::cout << '\n';
+
 		while(shortName.length() > 2 || shortName.length() <= 0){
 			std::cout << "Sifra Predmeta moze biti maksimalno 2 slova duzine\n";
 			std::cout << "Sifra Predmeta: ";
@@ -1274,46 +1369,81 @@ void dodajUListuIspita(std::vector<Ispit> &listaIspita){
 			std::cout << '\n';
 		}
 
-		std::cout << "\n Profesorov JMBG (13 znakova): ";
-		std::string profesorJmbg;
-		std::cin.clear();
-		std::cin >> profesorJmbg;
-		std::cout << '\n';
-		while(profesorJmbg.length()!= 13){
-			std::cout << "JMBG mora biti 13 znakova duzine\n";
-			std::cout << "JMBG: ";
+		int sifraCondition = nadjiPredmetPoKratici(listaPredmeta, shortName);
+
+		if(sifraCondition == 1){
+
+			std::cout << "\n Profesorov JMBG (13 znakova): ";
+			std::string profesorJmbg;
 			std::cin.clear();
 			std::cin >> profesorJmbg;
 			std::cout << '\n';
+
+			while(profesorJmbg.length()!= 13){
+				std::cout << "JMBG mora biti 13 znakova duzine\n";
+				std::cout << "JMBG: ";
+				std::cin.clear();
+				std::cin >> profesorJmbg;
+				std::cout << '\n';
+			}
+
+			int jmbgCondition = nadjiElement(listaNastavnika, profesorJmbg);
+
+			if(jmbgCondition == 1){
+
+				std::cout << "\n Broj Indexa: ";
+				std::string brIndex;
+				std::cin.clear();
+				std::cin >> brIndex;
+				std::cout << '\n';
+
+				int brIndexaProvjera = nadjiStudentaPoIndexu(listaStudenata, brIndex);
+
+				if(brIndexaProvjera == 1){
+
+					std::cout << "\n Datum: ";
+					std::string datum;
+					std::cin.clear();
+					std::cin >> datum;
+					std::cout << '\n';
+
+					int daLiIspitPostojiVec = nadjiIspitPoDatumuStudentuPredmetu(
+							listaIspita,
+							datum,
+							brIndex,
+							shortName);
+
+					if(daLiIspitPostojiVec == 0){
+
+						std::cout << "\n Ocjena: ";
+						std::string ocjena;
+						std::cin.clear();
+						std::cin >> ocjena;
+						std::cout << '\n';
+
+						Ispit aNewIspit(
+								shortName,
+								profesorJmbg,
+								brIndex,
+								datum,
+								ocjena
+						);
+
+						listaIspita.push_back(aNewIspit);
+					}else{
+						std::cout << "Ispit sa ovim vrijednostima vec postoji u bazi \n\n";
+					}
+
+				}else{
+					std::cout << "Student sa unesenim brojem indexa ne postoji u bazi \n\n";
+				}
+
+			}else{
+				std::cout << "Nastavnik sa unesenim jmbg-om ne postoji u bazi \n\n";
+			}
+		}else{
+			std::cout << "Predmet sa takvom kraticom ne postoji u bazi \n\n";
 		}
-
-		std::cout << "\n Broj Indexa: ";
-		std::string brIndex;
-		std::cin.clear();
-		std::cin >> brIndex;
-		std::cout << '\n';
-
-		std::cout << "\n Datum: ";
-		std::string datum;
-		std::cin.clear();
-		std::cin >> datum;
-		std::cout << '\n';
-
-		std::cout << "\n Ocjena: ";
-		std::string ocjena;
-		std::cin.clear();
-		std::cin >> ocjena;
-		std::cout << '\n';
-
-		Ispit aNewIspit(
-				shortName,
-				profesorJmbg,
-				brIndex,
-				datum,
-				ocjena
-		);
-
-		listaIspita.push_back(aNewIspit);
 
 	}
 
