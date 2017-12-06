@@ -48,6 +48,7 @@ int nadjiElement(std::vector<A> aList, std::string aJmbgElement)
 int nadjiStudentaPoIndexu(std::vector<Student> aListaStudenata, std::string aIndexNr);
 int nadjiPredmetPoKratici(std::vector<Predmet> aListaPredmeta, std::string aKratica);
 int nadjiSPPoKratici(std::vector<StudijskiProgram> aListaPredmeta, std::string aKratica);
+int nadjiUsmjerenjePoKratici(std::vector<Usmjerenje> aListaUsmjerenja, std::string aKratica);
 int nadjiIspitPoDatumuStudentuPredmetu(
 		std::vector<Ispit> aListaIspita,
 		std::string datum,

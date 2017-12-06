@@ -46,6 +46,19 @@ int nadjiSPPoKratici(std::vector<StudijskiProgram> aListaPredmeta, std::string a
 	return aReturn;
 }
 
+int nadjiUsmjerenjePoKratici(std::vector<Usmjerenje> aListaUsmjerenja, std::string aKratica){
+	std::vector<Usmjerenje>::iterator it;
+	int aReturn = 0;
+
+	for(it = aListaUsmjerenja.begin(); it != aListaUsmjerenja.end(); ++it){
+	  if( (*it).getShortName() == aKratica ){
+		  aReturn = 1;
+	  }
+	}
+
+	return aReturn;
+}
+
 int nadjiIspitPoDatumuStudentuPredmetu(
 		std::vector<Ispit> aListaIspita,
 		std::string datum,
@@ -1302,33 +1315,40 @@ void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja){
 			std::cout << '\n';
 		}
 
-		std::cout << "\n Naziv Usmjerenja: ";
-		std::string fullName;
-		std::cin.clear();
-		std::cin >> fullName;
-		std::cout << '\n';
+		int indexCheck = nadjiUsmjerenjePoKratici(listaUsmjerenja, shortName);
 
-		std::cout << "\n Studijski Program Kratica (2 slova): ";
-		std::string studijskiP;
-		std::cin.clear();
-		std::cin >> studijskiP;
-		std::cout << '\n';
-		while(studijskiP.length() > 2 || studijskiP.length() <= 0){
-			std::cout << "Studijski Program Kratica moze biti maksimalno 2 slova duzine\n";
-			std::cout << "Studijski Program Kratica: ";
+		if(indexCheck == 0){
+
+			std::cout << "\n Naziv Usmjerenja: ";
+			std::string fullName;
+			std::cin.clear();
+			std::cin >> fullName;
+			std::cout << '\n';
+
+			std::cout << "\n Studijski Program Kratica (2 slova): ";
+			std::string studijskiP;
 			std::cin.clear();
 			std::cin >> studijskiP;
 			std::cout << '\n';
+			while(studijskiP.length() > 2 || studijskiP.length() <= 0){
+				std::cout << "Studijski Program Kratica moze biti maksimalno 2 slova duzine\n";
+				std::cout << "Studijski Program Kratica: ";
+				std::cin.clear();
+				std::cin >> studijskiP;
+				std::cout << '\n';
+			}
+
+			Usmjerenje aNewUsmjerenje(
+					shortName,
+					fullName,
+					studijskiP
+			);
+
+			listaUsmjerenja.push_back(aNewUsmjerenje);
+
+		}else{
+			std::cout << "Usmjerenje sa unesenom kraticom vec postoji u bazi \n\n";
 		}
-
-		Usmjerenje aNewUsmjerenje(
-				shortName,
-				fullName,
-				studijskiP
-		);
-
-		listaUsmjerenja.push_back(aNewUsmjerenje);
-
 	}
 
 	std::cout << "Izlazite iz dodajUListuUsmjerenja \n\n";

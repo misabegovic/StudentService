@@ -22,6 +22,7 @@
 #include "Student.h"
 #include "Usmjerenje.h"
 #include "Ispit.h"
+#include "ZajednickeMetode.h"
 
 std::vector<Nastavnik> readNastavnikFile();
 std::vector<StudijskiProgram> readSPFile();

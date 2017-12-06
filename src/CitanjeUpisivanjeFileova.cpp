@@ -163,15 +163,20 @@ std::vector<Nastavnik> readNastavnikFile(){
 			getline(tokenizer,aPosition,'#');
 			getline(tokenizer,aSubject);
 
-			Nastavnik aNastavnik(
-					aJmbg,
-					aFirstName,
-					aLastName,
-					aPosition,
-					aSubject
-			);
+			int jmbgCheck = nadjiElement(kolekcijaNastavnika, aJmbg);
 
-			kolekcijaNastavnika.push_back(aNastavnik);
+			if(jmbgCheck == 0){
+
+				Nastavnik aNastavnik(
+							aJmbg,
+							aFirstName,
+							aLastName,
+							aPosition,
+							aSubject
+					);
+
+				kolekcijaNastavnika.push_back(aNastavnik);
+			}
 		  }
 		}
 
@@ -202,7 +207,12 @@ std::vector<StudijskiProgram> readSPFile(){
 
 			StudijskiProgram aStudijskiProgram(aShortTitle, aFullTitle);
 
-			kolekcijaStudijskihPrograma.push_back(aStudijskiProgram);
+			int checkShort = nadjiSPPoKratici(kolekcijaStudijskihPrograma, aShortTitle);
+
+			if(checkShort == 0){
+				StudijskiProgram aStudijskiProgram(aShortTitle, aFullTitle);
+				kolekcijaStudijskihPrograma.push_back(aStudijskiProgram);
+			}
 		  }
 		}
 		myfile.close();
@@ -262,20 +272,25 @@ std::vector<Predmet> readPredmetFile(){
 			std::stringstream(aNosiEcts) >> ectsInt;
 			std::stringstream(aTrajeSemestara) >> trajeSemInt;
 
-			Predmet aPredmet(
-					aSifraPredmeta,
-					aNazivPredmeta,
-					aStudijskiP1,
-					aStudijskiP2,
-					uSemInt,
-					predInt,
-					audVjezInt,
-					labVjezInt,
-					ectsInt,
-					trajeSemInt
-					);
+			int shortCheck = nadjiPredmetPoKratici(kolekcijaPredmeta, aSifraPredmeta);
 
-			kolekcijaPredmeta.push_back(aPredmet);
+			if(shortCheck == 0){
+
+				Predmet aPredmet(
+						aSifraPredmeta,
+						aNazivPredmeta,
+						aStudijskiP1,
+						aStudijskiP2,
+						uSemInt,
+						predInt,
+						audVjezInt,
+						labVjezInt,
+						ectsInt,
+						trajeSemInt
+						);
+
+				kolekcijaPredmeta.push_back(aPredmet);
+			}
 		  }
 		}
 		myfile.close();
@@ -311,15 +326,20 @@ std::vector<Student> readStudentFile(){
 			getline (tokenizer,aBrIndexa,'#');
 			getline (tokenizer,aSmijer,'\n');
 
-			Student aStudent(
-					aJmbg,
-					aFirstName,
-					aLastName,
-					aBrIndexa,
-					aSmijer
-					);
+			int indexCheck = nadjiStudentaPoIndexu(kolekcijaStudenata, aBrIndexa);
 
-			kolekcijaStudenata.push_back(aStudent);
+			if(indexCheck == 0){
+
+				Student aStudent(
+						aJmbg,
+						aFirstName,
+						aLastName,
+						aBrIndexa,
+						aSmijer
+						);
+
+				kolekcijaStudenata.push_back(aStudent);
+			}
 		  }
 		}
 		myfile.close();
@@ -351,13 +371,18 @@ std::vector<Usmjerenje> readUsmjerenjeFile(){
 			getline (tokenizer,aFullName,'#');
 			getline (tokenizer,aSPNaziv,'\n');
 
-			Usmjerenje aUsmjerenje(
-					aShortName,
-					aFullName,
-					aSPNaziv
-					);
+			int indexCheck = nadjiUsmjerenjePoKratici(kolekcijaUsmjerenja, aShortName);
 
-			kolekcijaUsmjerenja.push_back(aUsmjerenje);
+			if(indexCheck == 0){
+
+				Usmjerenje aUsmjerenje(
+						aShortName,
+						aFullName,
+						aSPNaziv
+						);
+
+				kolekcijaUsmjerenja.push_back(aUsmjerenje);
+			}
 		  }
 		}
 		myfile.close();
@@ -393,15 +418,24 @@ std::vector<Ispit> readIspitFile(){
 			getline (tokenizer,aDate,'#');
 			getline (tokenizer,aGrade,'\n');
 
-			Ispit aIspit(
-					aSubjectShort,
-					aJmbg,
-					aIndexNr,
+			int daLiIspitPostojiVec = nadjiIspitPoDatumuStudentuPredmetu(
+					kolekcijaIspita,
 					aDate,
-					aGrade
-					);
+					aIndexNr,
+					aSubjectShort);
 
-			kolekcijaIspita.push_back(aIspit);
+			if(daLiIspitPostojiVec == 0){
+
+				Ispit aIspit(
+						aSubjectShort,
+						aJmbg,
+						aIndexNr,
+						aDate,
+						aGrade
+						);
+
+				kolekcijaIspita.push_back(aIspit);
+			}
 		  }
 		}
 		myfile.close();
