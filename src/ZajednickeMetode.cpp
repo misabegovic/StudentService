@@ -454,39 +454,75 @@ void promjeniPredmet(Predmet &aPredmet){
 			std::cout << '\n';
 		}else if(aTemp == "uSemestru"){
 			std::cout << "Upisite novi broj semestra: ";
+
 			int brSem;
-			std::cin >> brSem;
-			aPredmet.setUSemestru(brSem);
+			if (std::cin >> brSem) {
+				aPredmet.setUSemestru(brSem);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else if(aTemp == "predavanjaSati"){
 			std::cout << "Upisite novi broj sedmicnih sati za predavanja: ";
+
 			int brSati;
-			std::cin >> brSati;
-			aPredmet.setPredavanjaSati(brSati);
+			if (std::cin >> brSati) {
+				aPredmet.setPredavanjaSati(brSati);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else if(aTemp == "auditorneSati"){
 			std::cout << "Upisite novi broj sedmicnih sati za auditorne vjezbe: ";
+
 			int brSati;
-			std::cin >> brSati;
-			aPredmet.setAuditorneSati(brSati);
+			if (std::cin >> brSati) {
+				aPredmet.setAuditorneSati(brSati);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else if(aTemp == "labVjezbeSati"){
 			std::cout << "Upisite novi broj sedmicnih sati za laboratorijske vjezbe: ";
+
 			int brSati;
-			std::cin >> brSati;
-			aPredmet.setLabVSati(brSati);
+			if (std::cin >> brSati) {
+				aPredmet.setLabVSati(brSati);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else if(aTemp == "nosiEcts"){
 			std::cout << "Upisite novi broj ECTS-ova za predmet: ";
+
 			int brEcts;
-			std::cin >> brEcts;
-			aPredmet.setNosiEcts(brEcts);
+			if (std::cin >> brEcts) {
+				aPredmet.setNosiEcts(brEcts);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else if(aTemp == "trajeSemestara"){
 			std::cout << "Upisite trajanjeSemestara za predmet: ";
+
 			int brSemestara;
-			std::cin >> brSemestara;
-			aPredmet.setTrajeSemestara(brSemestara);
+			if (std::cin >> brSemestara) {
+				aPredmet.setTrajeSemestara(brSemestara);
+				std::cout << "\n\n Uspješno ste napravili promjenu. \n\n ";
+			} else {
+				std::cout << "\n\n Unesite broj, tekst nije dozvoljen. \n\n ";
+			}
+
 			std::cout << '\n';
 		}else{
 			std::cout << "Niste unijeli ispravan naziv varijable \n";
@@ -1163,37 +1199,55 @@ void dodajUListuPredmeta(
 					std::cout << "\n U semestru (broj): ";
 					int uSemestru;
 					std::cin.clear();
-					std::cin >> uSemestru;
+					if (std::cin >> uSemestru) {}else {
+						uSemestru = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					std::cout << "\n Sedmicni sati predavanja: ";
 					int aPredavanjaSati;
 					std::cin.clear();
-					std::cin >> aPredavanjaSati;
+					if (std::cin >> aPredavanjaSati) {} else {
+						aPredavanjaSati = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					std::cout << "\n Sedmicni sati auditornih vjezbi: ";
 					int aAuditorneVjezbeS;
 					std::cin.clear();
-					std::cin >> aAuditorneVjezbeS;
+					if (std::cin >> aAuditorneVjezbeS) {} else {
+						aAuditorneVjezbeS = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
 					int aLabVjezbeS;
 					std::cin.clear();
-					std::cin >> aLabVjezbeS;
+					if (std::cin >> aLabVjezbeS) {} else {
+						aLabVjezbeS = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					std::cout << "\n Nosi Ects: ";
 					int aNosiEcts;
 					std::cin.clear();
-					std::cin >> aNosiEcts;
+					if (std::cin >> aNosiEcts) {} else {
+						aNosiEcts = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					std::cout << "\n Traje semestara (broj): ";
 					int aTrajeSemestara;
 					std::cin.clear();
-					std::cin >> aTrajeSemestara;
+					if (std::cin >> aTrajeSemestara) {} else {
+						aTrajeSemestara = 0;
+						std::cout << "\n\n Unijeli ste nevažeći oblik podatka, vrijednost će biti upisana kao 0. \n\n ";
+					}
 					std::cout << '\n';
 
 					Predmet aNewPredmet(
