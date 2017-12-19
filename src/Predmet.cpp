@@ -9,8 +9,8 @@
 
 Predmet::Predmet(std::string aSifraPredmeta,
 		std::string aNazivPredmeta,
-		std::string aStudijskiP1,
-		std::string aStudijskiP2,
+		std::string aStudijskiProgram,
+		std::string aUsmjerenje,
 		int aUSemestru,
 		int aPredavanjaSati,
 		int aAuditorneVjezbeS,
@@ -20,8 +20,8 @@ Predmet::Predmet(std::string aSifraPredmeta,
 
 	sifraPredmeta = aSifraPredmeta;
 	nazivPredmeta = aNazivPredmeta;
-	studijskiProgram1 = aStudijskiP1;
-	studijskiProgram2 = aStudijskiP2;
+	studijskiProgram = aStudijskiProgram;
+	usmjerenje = aUsmjerenje;
 	uSemestru = aUSemestru;
 	predavanjaSati = aPredavanjaSati;
 	auditorneVjezbeSati = aAuditorneVjezbeS;
@@ -36,8 +36,8 @@ Predmet::~Predmet() {}
 void Predmet::ispisiPodatke(){
 	std::cout << "Sifra Predmeta: " << getSifraP() << '\n';
 	std::cout << "Puni naziv predmeta: " << getNazivP() << "\n";
-	std::cout << "Studijski Program 1 : " << getSP1() << '\n';
-	std::cout << "Studijski Program 2: " << getSP2() << '\n';
+	std::cout << "Studijski Program : " << getSP() << '\n';
+	std::cout << "Usmjerenje : " << getUsmjerenje() << '\n';
 	std::cout << "U Semestru: " << getUSemestru() << "\n";
 	std::cout << "Sedmično sati predavanja: " << getPredavanjaSati() << '\n';
 	std::cout << "Sedmično sati auditorne: " << getAuditorneVSati() << "\n";

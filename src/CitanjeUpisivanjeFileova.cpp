@@ -59,8 +59,8 @@ void updatePredmetFile(std::vector<Predmet> listaPredmeta){
 	while(it != listaPredmeta.end()){
 	  myfile << (*it).getSifraP() << "#";
 	  myfile << (*it).getNazivP() << "#";
-	  myfile << (*it).getSP1() << "#";
-	  myfile << (*it).getSP2() << "#";
+	  myfile << (*it).getSP() << "#";
+	  myfile << (*it).getUsmjerenje() << "#";
 	  myfile << (*it).getUSemestru() << "#";
 	  myfile << (*it).getPredavanjaSati() << "#";
 	  myfile << (*it).getAuditorneVSati() << "#";
@@ -229,8 +229,8 @@ std::vector<Predmet> readPredmetFile(){
 
 	std::string aSifraPredmeta;
 	std::string aNazivPredmeta;
-	std::string aStudijskiP1;
-	std::string aStudijskiP2;
+	std::string aStudijskiProgram;
+	std::string aUsmjerenje;
 	std::string aUSemestru;
 	std::string aPredavanjaSati;
 	std::string aAuditorneVjezbeS;
@@ -256,8 +256,8 @@ std::vector<Predmet> readPredmetFile(){
 		  if(tokenizer) {
 			getline (tokenizer,aSifraPredmeta,'#');
 			getline (tokenizer,aNazivPredmeta,'#');
-			getline (tokenizer,aStudijskiP1,'#');
-			getline (tokenizer,aStudijskiP2,'#');
+			getline (tokenizer,aStudijskiProgram,'#');
+			getline (tokenizer,aUsmjerenje,'#');
 			getline (tokenizer,aUSemestru,'#');
 			getline (tokenizer,aPredavanjaSati,'#');
 			getline (tokenizer,aAuditorneVjezbeS,'#');
@@ -279,8 +279,8 @@ std::vector<Predmet> readPredmetFile(){
 				Predmet aPredmet(
 						aSifraPredmeta,
 						aNazivPredmeta,
-						aStudijskiP1,
-						aStudijskiP2,
+						aStudijskiProgram,
+						aUsmjerenje,
 						uSemInt,
 						predInt,
 						audVjezInt,

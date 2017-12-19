@@ -15,8 +15,8 @@ class Predmet {
 private:
 	std::string sifraPredmeta;
 	std::string nazivPredmeta;
-	std::string studijskiProgram1;
-	std::string studijskiProgram2;
+	std::string studijskiProgram;
+	std::string usmjerenje;
 	int uSemestru;
 	int predavanjaSati;
 	int auditorneVjezbeSati;
@@ -27,8 +27,8 @@ public:
 	Predmet();
 	Predmet(std::string aSifraPredmeta,
 			std::string aNazivPredmeta,
-			std::string aStudijskiP1,
-			std::string aStudijskiP2,
+			std::string aStudijskiProgram,
+			std::string aUsmjerenje,
 			int aUSemestru,
 			int aPredavanjaSati,
 			int aAuditorneVjezbeS,
@@ -38,8 +38,8 @@ public:
 	virtual ~Predmet();
 	std::string getSifraP(){ return sifraPredmeta; }
 	std::string getNazivP(){ return nazivPredmeta; }
-	std::string getSP1(){ return studijskiProgram1; }
-	std::string getSP2(){ return studijskiProgram2; }
+	std::string getSP(){ return studijskiProgram; }
+	std::string getUsmjerenje(){ return usmjerenje; }
 	int getUSemestru(){ return uSemestru; }
 	int getPredavanjaSati(){ return predavanjaSati; }
 	int getAuditorneVSati(){ return auditorneVjezbeSati; }
@@ -48,8 +48,8 @@ public:
 	int getTrajeSemestara(){ return trajeSemestara; }
 	void setSifraP(std::string aSifraP){ sifraPredmeta = aSifraP; }
 	void setNazivP(std::string aNazivP){ nazivPredmeta = aNazivP; }
-	void setSP1(std::string aSP1){ studijskiProgram1 = aSP1; }
-	void setSP2(std::string aSP2){ studijskiProgram2 = aSP2; }
+	void setSP(std::string aSP1){ studijskiProgram = aSP1; }
+	void setUsmjerenje(std::string aUsmjerenje){ usmjerenje = aUsmjerenje; }
 	void setUSemestru(int aUSemestru){ uSemestru = aUSemestru; }
 	void setPredavanjaSati(int aPredavanjaSati){ predavanjaSati = aPredavanjaSati; }
 	void setAuditorneSati(int aAuditSati){ auditorneVjezbeSati = aAuditSati; }

@@ -212,7 +212,7 @@ void dodajPodatke(){
 		}else if(aTemp == "studijskiProgrami"){
 			dodajUListuStudijskihPrograma(studijskiProgrami);
 		}else if(aTemp == "predmeti"){
-			dodajUListuPredmeta(predmeti);
+			dodajUListuPredmeta(predmeti, usmjerenja, studijskiProgrami);
 		}else if(aTemp == "studenti"){
 			dodajUListuStudenata(studenti);
 		}else if(aTemp == "usmjerenja"){

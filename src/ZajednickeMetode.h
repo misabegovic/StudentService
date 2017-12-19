@@ -85,7 +85,9 @@ void obrisiIzListeIspita(std::vector<Ispit> &listaIspita);
 
 void dodajUListuNastavnika(std::vector<Nastavnik> &listaNastavnika);
 void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP);
-void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta);
+void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta,
+		std::vector<Usmjerenje> &listaUsmjerenja,
+		std::vector<StudijskiProgram> &listaSP);
 void dodajUListuStudenata(std::vector<Student> &listaStudenata);
 void dodajUListuUsmjerenja(std::vector<Usmjerenje> &listaUsmjerenja);
 void dodajUListuIspita(

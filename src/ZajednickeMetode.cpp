@@ -396,7 +396,7 @@ void promjeniPredmet(Predmet &aPredmet){
 	std::cout << "Sta zelite promjeniti? \n\n";
 	std::cout << "Upisite // kada zavrsite sa promjenama \n";
 	std::cout << "Dostupno za promjenu: \n\n";
-	std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram1, studijskiProgram2 \n";
+	std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram, usmjerenje \n";
 	std::cout << "uSemestru, predavanjaSati, auditorneSati \n";
 	std::cout << "labVjezbeSati , nosiEcts , trajeSemestara \n\n";
 
@@ -426,8 +426,8 @@ void promjeniPredmet(Predmet &aPredmet){
 			std::cin >> aPuniNaziv;
 			aPredmet.setNazivP(aPuniNaziv);
 			std::cout << '\n';
-		}else if(aTemp == "studijskiProgram1"){
-			std::cout << "Upisite novu kraticu za studijski program 1 (2 slova): ";
+		}else if(aTemp == "studijskiProgram"){
+			std::cout << "Upisite novu kraticu za studijski program (2 slova): ";
 			std::string kratica;
 			std::cin >> kratica;
 			while(kratica.length() <= 0 || kratica.length() > 2){
@@ -437,10 +437,10 @@ void promjeniPredmet(Predmet &aPredmet){
 				std::cin.clear();
 				std::cin >> kratica;
 			}
-			aPredmet.setSP1(kratica);
+			aPredmet.setSP(kratica);
 			std::cout << '\n';
-		}else if(aTemp == "studijskiProgram2"){
-			std::cout << "Upisite novu kraticu za studijski program 2 (2 slova): ";
+		}else if(aTemp == "usmjerenje"){
+			std::cout << "Upisite novu kraticu za usmjerenje (2 slova): ";
 			std::string kratica;
 			std::cin >> kratica;
 			while(kratica.length() <= 0 || kratica.length() > 2){
@@ -450,7 +450,7 @@ void promjeniPredmet(Predmet &aPredmet){
 				std::cin.clear();
 				std::cin >> kratica;
 			}
-			aPredmet.setSP2(kratica);
+			aPredmet.setUsmjerenje(kratica);
 			std::cout << '\n';
 		}else if(aTemp == "uSemestru"){
 			std::cout << "Upisite novi broj semestra: ";
@@ -494,7 +494,7 @@ void promjeniPredmet(Predmet &aPredmet){
 
 		std::cout << "Upisite // kada zavrsite sa promjenama \n";
 		std::cout << "Dostupno za promjenu: \n\n";
-		std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram1, studijskiProgram2 \n";
+		std::cout << "sifraPredmeta , nazivPredmeta , studijskiProgram, usmjerenje \n";
 		std::cout << "uSemestru, predavanjaSati, auditorneSati \n";
 		std::cout << "labVjezbeSati , nosiEcts , trajeSemestara \n\n";
 
@@ -1085,7 +1085,10 @@ void dodajUListuStudijskihPrograma(std::vector<StudijskiProgram> &listaSP){
 
 }
 
-void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta){
+void dodajUListuPredmeta(
+		std::vector<Predmet> &listaPredmeta,
+		std::vector<Usmjerenje> &listaUsmjerenja,
+		std::vector<StudijskiProgram> &listaSP){
 	std::cout << "Ulazite u dodajUListuPredmeta \n\n";
 
 	prikazListePredmeta(listaPredmeta);
@@ -1123,85 +1126,101 @@ void dodajUListuPredmeta(std::vector<Predmet> &listaPredmeta){
 			std::cin >> fullName;
 			std::cout << '\n';
 
-			std::cout << "\n Studijski Program 1 Kratica (2 slova): ";
-			std::string studijskiP1;
+			std::cout << "\n Studijski Program Kratica (2 slova): ";
+			std::string studijskiP;
 			std::cin.clear();
-			std::cin >> studijskiP1;
+			std::cin >> studijskiP;
 			std::cout << '\n';
-			while(studijskiP1.length() > 2 || studijskiP1.length() <= 0){
-				std::cout << "Studijski Program 1 Kratica moze biti maksimalno 2 slova duzine\n";
-				std::cout << "Studijski Program 1 Kratica: ";
+			while(studijskiP.length() > 2 || studijskiP.length() <= 0){
+				std::cout << "Studijski Program Kratica moze biti maksimalno 2 slova duzine\n";
+				std::cout << "Studijski Program Kratica: ";
 				std::cin.clear();
-				std::cin >> studijskiP1;
+				std::cin >> studijskiP;
 				std::cout << '\n';
 			}
 
-			std::cout << "\n Studijski Program 2 Kratica (2 slova): ";
-			std::string studijskiP2;
-			std::cin.clear();
-			std::cin >> studijskiP2;
-			std::cout << '\n';
-			while(studijskiP2.length() > 2 || studijskiP2.length() <= 0){
-				std::cout << "Studijski Program 2 Kratica moze biti maksimalno 2 slova duzine\n";
-				std::cout << "Studijski Program 2 Kratica: ";
+			int spCheck = nadjiSPPoKratici(listaSP, studijskiP);
+
+			if(spCheck == 1){
+
+				std::cout << "\n Usmjerenje Kratica (2 slova): ";
+				std::string aUsmjerenje;
 				std::cin.clear();
-				std::cin >> studijskiP2;
+				std::cin >> aUsmjerenje;
 				std::cout << '\n';
+				while(aUsmjerenje.length() > 2 || aUsmjerenje.length() <= 0){
+					std::cout << "Usmjerenje Kratica moze biti maksimalno 2 slova duzine\n";
+					std::cout << "Usmjerenje Program 2 Kratica: ";
+					std::cin.clear();
+					std::cin >> aUsmjerenje;
+					std::cout << '\n';
+				}
+
+				int usmjerenjeCheck = nadjiUsmjerenjePoKratici(listaUsmjerenja, aUsmjerenje);
+
+				if(usmjerenjeCheck == 1){
+
+					std::cout << "\n U semestru (broj): ";
+					int uSemestru;
+					std::cin.clear();
+					std::cin >> uSemestru;
+					std::cout << '\n';
+
+					std::cout << "\n Sedmicni sati predavanja: ";
+					int aPredavanjaSati;
+					std::cin.clear();
+					std::cin >> aPredavanjaSati;
+					std::cout << '\n';
+
+					std::cout << "\n Sedmicni sati auditornih vjezbi: ";
+					int aAuditorneVjezbeS;
+					std::cin.clear();
+					std::cin >> aAuditorneVjezbeS;
+					std::cout << '\n';
+
+					std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
+					int aLabVjezbeS;
+					std::cin.clear();
+					std::cin >> aLabVjezbeS;
+					std::cout << '\n';
+
+					std::cout << "\n Nosi Ects: ";
+					int aNosiEcts;
+					std::cin.clear();
+					std::cin >> aNosiEcts;
+					std::cout << '\n';
+
+					std::cout << "\n Traje semestara (broj): ";
+					int aTrajeSemestara;
+					std::cin.clear();
+					std::cin >> aTrajeSemestara;
+					std::cout << '\n';
+
+					Predmet aNewPredmet(
+							shortName,
+							fullName,
+							studijskiP,
+							aUsmjerenje,
+							uSemestru,
+							aPredavanjaSati,
+							aAuditorneVjezbeS,
+							aLabVjezbeS,
+							aNosiEcts,
+							aTrajeSemestara
+					);
+
+					listaPredmeta.push_back(aNewPredmet);
+
+				}else{
+					std::cout << "Usmjerenje sa unesenom kraticom ne postoji u bazi \n\n";
+				}
+
+			}else{
+				std::cout << "Studijski Program sa unesenom kraticom ne postoji u bazi \n\n";
 			}
-
-			std::cout << "\n U semestru (broj): ";
-			int uSemestru;
-			std::cin.clear();
-			std::cin >> uSemestru;
-			std::cout << '\n';
-
-			std::cout << "\n Sedmicni sati predavanja: ";
-			int aPredavanjaSati;
-			std::cin.clear();
-			std::cin >> aPredavanjaSati;
-			std::cout << '\n';
-
-			std::cout << "\n Sedmicni sati auditornih vjezbi: ";
-			int aAuditorneVjezbeS;
-			std::cin.clear();
-			std::cin >> aAuditorneVjezbeS;
-			std::cout << '\n';
-
-			std::cout << "\n Sedmicni sati laboratorijskih vjezbi: ";
-			int aLabVjezbeS;
-			std::cin.clear();
-			std::cin >> aLabVjezbeS;
-			std::cout << '\n';
-
-			std::cout << "\n Nosi Ects: ";
-			int aNosiEcts;
-			std::cin.clear();
-			std::cin >> aNosiEcts;
-			std::cout << '\n';
-
-			std::cout << "\n Traje semestara (broj): ";
-			int aTrajeSemestara;
-			std::cin.clear();
-			std::cin >> aTrajeSemestara;
-			std::cout << '\n';
-
-			Predmet aNewPredmet(
-					shortName,
-					fullName,
-					studijskiP1,
-					studijskiP2,
-					uSemestru,
-					aPredavanjaSati,
-					aAuditorneVjezbeS,
-					aLabVjezbeS,
-					aNosiEcts,
-					aTrajeSemestara
-			);
-
-			listaPredmeta.push_back(aNewPredmet);
 
 		}else{
-			std::cout << "Studijski Program sa unesenom kraticom vec postoji u bazi \n\n";
+			std::cout << "Predmet sa unesenom kraticom vec postoji u bazi \n\n";
 		}
 	}
 
